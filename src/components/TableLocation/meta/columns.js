@@ -1,5 +1,10 @@
 const columns = [
   {
+    title: 'Country',
+    dataIndex: 'country',
+    key: 'country',
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
