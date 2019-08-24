@@ -20,6 +20,11 @@ const columns = [
     key: 'condition',
   },
   {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+  },
+  {
     title: 'Action',
     dataIndex: 'action',
     key: 'action',

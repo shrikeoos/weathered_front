@@ -1,19 +1,19 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import columns from './meta/columns';
 import locations from '../../data.json';
 
 const getCondition = (temperature) => {
   if (temperature < 15) {
-    return 'cold';
+    return <Tag color="cyan">cold</Tag>;
   } else if (temperature < 25) {
-    return 'good';
+    return <Tag color="green">good</Tag>;
   } else if (temperature < 35) {
-    return 'hot';
+    return <Tag color="orange">hot</Tag>;
   } else if (temperature < 45) {
-    return 'warning';
+    return <Tag color="volcano">warning</Tag>;
   } else {
-    return 'danger';
+    return <Tag color="red">danger</Tag>;
   }
 };
 
@@ -24,7 +24,7 @@ const getData = (locations) =>
       key: location,
       name: location,
       temperature,
-      condition: getCondition(temperature),
+      status: getCondition(temperature),
     };
   });
 
