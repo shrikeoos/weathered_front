@@ -7,6 +7,7 @@ class Map extends Component {
     this.map = L.map('mapid', {
       center: [49.8419, 24.0315],
       zoom: 3,
+      attributionControl: false,
       layers: [
         L.tileLayer(URL, {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
