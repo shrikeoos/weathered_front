@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { FaCloudSun } from 'react-icons/fa';
 
 const { Header } = Layout;
 const { Item } = Menu;
@@ -8,7 +7,6 @@ const { Item } = Menu;
 const Navbar = () => {
   return (
     <Header>
-      <div className="logo">{/* <FaCloudSun /> */}</div>
       <Menu
         theme="dark"
         mode="horizontal"

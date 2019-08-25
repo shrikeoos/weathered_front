@@ -1,13 +1,13 @@
 import React from 'react';
 import './Main.css';
 import TableLocation from '../../components/TableLocation/TableLocation';
-import FormSearch from '../../components/FormSearch/FormSearch';
+import SearchLocation from '../../components/SearchLocation/SearchLocation';
 
 const Main = () => {
   return (
     <div className="main">
       <TableLocation />
-      <FormSearch />
+      <SearchLocation />
     </div>
   );
 };
