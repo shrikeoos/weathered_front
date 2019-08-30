@@ -23,7 +23,7 @@ const FormSearch = () => {
             placeholder="Find location..."
             enterButton="Search"
             onSearch={handleSearch}
-            style={{ width: 500 }}
+            style={{ width: 200 }}
           />
         </Item>
         {showResult && <Locations locationInput={locationInput} />}
