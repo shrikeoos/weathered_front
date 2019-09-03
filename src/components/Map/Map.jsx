@@ -25,7 +25,7 @@ class Map extends Component {
   }
 
   render() {
-    return <div id="mapid" style={{ width: '1500px', height: '500px' }} />;
+    return <div id="mapid" style={{ width: '1500px', height: '650px' }} />;
   }
 }
 

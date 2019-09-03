@@ -14,6 +14,7 @@ const Main = () => {
         visible={showModal}
         footer={[<Button key="buttonModal" onClick={() => setShowModal(false)}>close</Button>]}
         width="10"
+        bodyStyle={{height: "700px"}}
         title="Look for a place or click on the map"
         mask
         maskClosable
