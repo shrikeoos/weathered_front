@@ -3,7 +3,7 @@ import L from 'leaflet';
 
 class Map extends Component {
   componentDidMount = () => {
-    const URL = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+    const URL = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
     this.map = L.map('mapid', {
       center: [49.8419, 24.0315],
       zoom: 3,
@@ -15,6 +15,14 @@ class Map extends Component {
       ],
     });
   };
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.location !== prevProps.location) {
+      const {lon, lat} = this.props.location.coord
+      console.log(lat, lon)
+      this.map.flyTo([lat, lon], 11);
+    }
+  }
 
   render() {
     return <div id="mapid" style={{ width: '1500px', height: '500px' }} />;

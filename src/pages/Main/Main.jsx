@@ -9,10 +9,10 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Button onClick={() => setShowModal(true)} className="main__button">Add location</Button>
+      <Button type="primary" size="large" onClick={() => setShowModal(true)} className="main__button">Add location</Button>
       <Modal
         visible={showModal}
-        footer={[<Button onClick={() => setShowModal(false)}>close</Button>]}
+        footer={[<Button key="buttonModal" onClick={() => setShowModal(false)}>close</Button>]}
         width="10"
         title="Look for a place or click on the map"
         mask

@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Input } from 'antd';
-import Locations from '../Locations/Locations';
+import LocationContainer from '../LocationContainer/LocationContainer';
 import './FormSearch.css';
 
 const { Item } = Form;
 const { Search } = Input;
 
-const FormSearch = () => {
+const FormSearch = ({ location, setLocation }) => {
   const [locationInput, setLocationInput] = useState('');
-  const [showResult, setShowResult] = useState(false);
-
-  const handleSearch = (value) => {
-    setLocationInput(value);
-    setShowResult(true);
-  };
 
   return (
     <div className="formSearch">
@@ -22,11 +16,11 @@ const FormSearch = () => {
           <Search
             placeholder="Find location..."
             enterButton="Search"
-            onSearch={handleSearch}
-            style={{ width: 200 }}
+            onSearch={(value) => setLocationInput(value)}
+            style={{width: '300px'}}
           />
         </Item>
-        {showResult && <Locations locationInput={locationInput} />}
+        <LocationContainer locationInput={locationInput} location={location} setLocation={setLocation} />
       </Form>
     </div>
   );

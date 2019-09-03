@@ -3,21 +3,16 @@ import axios from 'axios';
 
 import LocationCard from '../LocationCard/LocationCard';
 
-const Locations = ({ locationInput }) => {
+const Locations = ({ locationInput, location, setLocation }) => {
   const [fetching, setFetching] = useState(false);
-  const [location, setLocation] = useState({});
   const [message, setMessage] = useState('');
-
-  const displayResult = () => {
-    return Object.entries(location).length === 0 ? message : <LocationCard location={location} />;
-  };
 
   useEffect(() => {
     const locationFetch = async () => {
       setFetching(true);
       try {
         const { data } = await axios.get(
-          `http://api.openweathermap.org/data/2.5/weather?q=${locationInput}&APPID=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+          `http://api.openweathermap.org/data/2.5/weather?q=${locationInput}&APPID=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`,
         );
         setLocation(data);
       } catch (error) {
@@ -28,7 +23,11 @@ const Locations = ({ locationInput }) => {
     locationFetch();
   }, [locationInput]);
 
-  return fetching ? <div>Loading...</div> : displayResult();
+  const displayResult = () => {
+    return Object.entries(location).length === 0 ? message : <LocationCard location={location} />;
+  };
+
+  return fetching ? <div>Please wait...</div> : displayResult();
 };
 
 export default Locations;
