@@ -13,10 +13,11 @@ const Main = () => {
       <Modal
         visible={showModal}
         footer={[<Button onClick={() => setShowModal(false)}>close</Button>]}
-        width='10'
-        title='Look for a place or click on the map'
+        width="10"
+        title="Look for a place or click on the map"
         mask
         maskClosable
+        onCancel={() => setShowModal(false)}
       >
         <SearchLocation />
       </Modal>
