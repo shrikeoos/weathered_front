@@ -7,7 +7,9 @@ const save = () => {};
 const LocationCard = ({ location }) => {
   return (
     Object.entries(location).length !== 0 && (
-      <Card title={`${location.name}, ${location.sys.country}`}>
+      // <Card title={`${location.name}, ${location.sys.country}`}>
+      <div>
+        <p><b>{`${location.name}, ${location.sys.country}`}</b></p>
         <p>
           <b>Temperature (°C): </b>
           {location.main.temp}
@@ -27,7 +29,8 @@ const LocationCard = ({ location }) => {
         <Button type="primary" onClick={save} ghost>
           Save
         </Button>
-      </Card>
+      </div>
+      // </Card>
     )
   );
 };

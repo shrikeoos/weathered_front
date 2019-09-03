@@ -9,7 +9,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Button onClick={() => setShowModal(true)}>Add location</Button>
+      <Button onClick={() => setShowModal(true)} className="main__button">Add location</Button>
       <Modal
         visible={showModal}
         footer={[<Button onClick={() => setShowModal(false)}>close</Button>]}

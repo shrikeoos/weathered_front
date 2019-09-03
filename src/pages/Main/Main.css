@@ -2,3 +2,7 @@
   height: 93vh;
   padding: 12px;
 }
+
+.main__button {
+  margin-bottom: 12px;
+}
