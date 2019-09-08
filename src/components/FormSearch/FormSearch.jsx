@@ -13,7 +13,6 @@ const { Search } = Input;
 
 const FormSearch = ({location, searchLocationByNameAction}) => {
   const [loading, setLoading] = useState(false);
-
   return (
     <div className="formSearch">
       <Form layout="inline">
@@ -34,7 +33,7 @@ const FormSearch = ({location, searchLocationByNameAction}) => {
             <Spin />
           </div>
         ) : (
-          Object.entries(location).length > 0 && <LocationContainer />
+          Object.entries(location.data).length > 0 && <LocationContainer />
         )}
       </Form>
     </div>
