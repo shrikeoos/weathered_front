@@ -3,3 +3,9 @@
   padding: 12px;
   width: 10%;
 }
+
+.spinner__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

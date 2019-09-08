@@ -9,12 +9,23 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Button type="primary" size="large" onClick={() => setShowModal(true)} className="main__button">Add location</Button>
+      <Button
+        type="primary"
+        size="large"
+        onClick={() => setShowModal(true)}
+        className="main__button"
+      >
+        Add location
+      </Button>
       <Modal
         visible={showModal}
-        footer={[<Button key="buttonModal" onClick={() => setShowModal(false)}>close</Button>]}
+        footer={[
+          <Button key="buttonModal" onClick={() => setShowModal(false)}>
+            close
+          </Button>,
+        ]}
         width="10"
-        bodyStyle={{height: "700px"}}
+        bodyStyle={{ height: '700px' }}
         title="Look for a place or click on the map"
         mask
         maskClosable

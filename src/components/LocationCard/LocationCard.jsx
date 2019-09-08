@@ -8,7 +8,9 @@ const LocationCard = ({ location }) => {
   return (
     Object.entries(location).length !== 0 && (
       <>
-        <p><b>{`${location.name}, ${location.sys.country}`}</b></p>
+        <p>
+          <b>{`${location.name}, ${location.sys.country}`}</b>
+        </p>
         <p>
           <b>Temperature (°C): </b>
           {location.main.temp}
