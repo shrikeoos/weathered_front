@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { Form, Input, Spin } from 'antd';
 
 import LocationContainer from '../LocationContainer/LocationContainer';
-import {searchLocationAction} from '../../redux/actions/location'
+import {searchLocationByNameAction} from '../../redux/actions/location'
 
 
 import './FormSearch.css';
@@ -11,9 +11,8 @@ import './FormSearch.css';
 const { Item } = Form;
 const { Search } = Input;
 
-const FormSearch = ({searchLocationAction}) => {
+const FormSearch = ({location, searchLocationByNameAction}) => {
   const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState('');
 
   return (
     <div className="formSearch">
@@ -24,8 +23,7 @@ const FormSearch = ({searchLocationAction}) => {
             enterButton="Search"
             onSearch={async (value) => {
               setLoading(true);
-              await searchLocationAction(value)
-              setInput(value);
+              await searchLocationByNameAction(value)
               setLoading(false);
             }}
             style={{ width: '300px' }}
@@ -36,11 +34,13 @@ const FormSearch = ({searchLocationAction}) => {
             <Spin />
           </div>
         ) : (
-          input.length > 0 && <LocationContainer />
+          Object.entries(location).length > 0 && <LocationContainer />
         )}
       </Form>
     </div>
   );
 };
 
-export default connect(null, {searchLocationAction})(FormSearch);
+const mapStateToProps = ({location}) => ({location})
+
+export default connect(mapStateToProps, {searchLocationByNameAction})(FormSearch);
