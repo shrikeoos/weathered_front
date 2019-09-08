@@ -9,6 +9,7 @@ const { Search } = Input;
 
 const FormSearch = ({ location, setLocation }) => {
   const [loading, setLoading] = useState(false);
+  const [input, setInput] = useState('');
 
   return (
     <div className="formSearch">
@@ -20,6 +21,7 @@ const FormSearch = ({ location, setLocation }) => {
             onSearch={async (value) => {
               setLoading(true);
               setLocation(await searchLocation(value));
+              setInput(value);
               setLoading(false);
             }}
             style={{ width: '300px' }}
@@ -30,7 +32,7 @@ const FormSearch = ({ location, setLocation }) => {
             <Spin />
           </div>
         ) : (
-          <LocationContainer location={location} />
+          input.length > 0 && <LocationContainer location={location} />
         )}
       </Form>
     </div>

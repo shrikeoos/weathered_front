@@ -28,8 +28,10 @@ class Map extends Component {
   };
 
   flyToNewLocation = () => {
-    const { lon, lat } = this.props.location.coord;
-    this.map.flyTo([lat, lon], 11);
+    if (Object.entries(this.props.location).length > 0) {
+      const { lon, lat } = this.props.location.coord;
+      this.map.flyTo([lat, lon], 11);
+    }
   };
 
   render() {
