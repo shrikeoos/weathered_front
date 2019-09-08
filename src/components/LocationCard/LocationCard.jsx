@@ -1,31 +1,33 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import { Button } from 'antd';
 
 //TODO insert location into DB
 const save = () => {};
 
 const LocationCard = ({ location }) => {
+  const {data} = location
   return (
-    Object.entries(location).length !== 0 && (
+    Object.entries(data).length !== 0 && (
       <>
         <p>
-          <b>{`${location.name}, ${location.sys.country}`}</b>
+          <b>{`${data.name}, ${data.sys.country}`}</b>
         </p>
         <p>
           <b>Temperature (°C): </b>
-          {location.main.temp}
+          {data.main.temp}
         </p>
         <p>
           <b>Condition: </b>
-          {location.weather[0].description}
+          {data.weather[0].description}
         </p>
         <p>
           <b>Humidity (%): </b>
-          {location.main.humidity}
+          {data.main.humidity}
         </p>
         <p>
           <b>Pressure (hPa): </b>
-          {location.main.pressure}
+          {data.main.pressure}
         </p>
         <Button type="primary" onClick={save} ghost>
           Save
@@ -35,4 +37,6 @@ const LocationCard = ({ location }) => {
   );
 };
 
-export default LocationCard;
+const mapStateToProps = ({location}) => ({location})
+
+export default connect(mapStateToProps)(LocationCard);

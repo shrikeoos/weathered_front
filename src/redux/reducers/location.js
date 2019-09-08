@@ -1,15 +1,15 @@
 import { ADD_LOCATION } from '../actionTypes';
 
 const initialState = {
-  location: {},
+  data: {},
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, {type, payload}) => {
+  switch (type) {
     case ADD_LOCATION:
       return {
         ...state,
-        location: action.payload,
+        data: payload,
       };
 
     default:

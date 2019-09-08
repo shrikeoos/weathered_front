@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import {connect} from 'react-redux';
 import { Form, Input, Spin } from 'antd';
+
 import LocationContainer from '../LocationContainer/LocationContainer';
-import searchLocation from '../../services/searchLocation';
+import {searchLocationAction} from '../../redux/actions/location'
+
+
 import './FormSearch.css';
 
 const { Item } = Form;
 const { Search } = Input;
 
-const FormSearch = ({ location, setLocation }) => {
+const FormSearch = ({searchLocationAction}) => {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
 
@@ -20,7 +24,7 @@ const FormSearch = ({ location, setLocation }) => {
             enterButton="Search"
             onSearch={async (value) => {
               setLoading(true);
-              setLocation(await searchLocation(value));
+              await searchLocationAction(value)
               setInput(value);
               setLoading(false);
             }}
@@ -32,11 +36,11 @@ const FormSearch = ({ location, setLocation }) => {
             <Spin />
           </div>
         ) : (
-          input.length > 0 && <LocationContainer location={location} />
+          input.length > 0 && <LocationContainer />
         )}
       </Form>
     </div>
   );
 };
 
-export default FormSearch;
+export default connect(null, {searchLocationAction})(FormSearch);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {searchLocationAction} from '../../redux/actions/location';
 import L from 'leaflet';
 
 class Map extends Component {
@@ -22,14 +24,15 @@ class Map extends Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.location !== prevProps.location) {
+    if (this.props.location.data !== prevProps.location.data) {
       this.flyToNewLocation();
     }
   };
 
   flyToNewLocation = () => {
-    if (Object.entries(this.props.location).length > 0) {
-      const { lon, lat } = this.props.location.coord;
+    if (Object.entries(this.props.location.data).length > 0) {
+      const { lon, lat } = this.props.location.data.coord;
+      console.log(lon, lat)
       this.map.flyTo([lat, lon], 11);
     }
   };
@@ -39,4 +42,6 @@ class Map extends Component {
   }
 }
 
-export default Map;
+const mapStateToProps = ({location}) => ({location});
+
+export default connect(mapStateToProps, {searchLocationAction})(Map);
