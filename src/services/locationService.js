@@ -20,5 +20,4 @@ export const searchLocationByCoordinates = async (lat, lon) => {
   } catch (error) {
     return {};
   }
-}
-
+};

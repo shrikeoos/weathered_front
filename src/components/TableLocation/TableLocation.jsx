@@ -1,40 +1,17 @@
 import React from 'react';
-import { Table, Tag } from 'antd';
+import { connect } from 'react-redux';
+import { Table } from 'antd';
 import columns from './meta/columns';
-import locations from '../../data.json';
 
-const getCondition = (temperature) => {
-  if (temperature < 15) {
-    return <Tag color="cyan">cold</Tag>;
-  } else if (temperature < 25) {
-    return <Tag color="green">good</Tag>;
-  } else if (temperature < 35) {
-    return <Tag color="orange">hot</Tag>;
-  } else if (temperature < 45) {
-    return <Tag color="volcano">warning</Tag>;
-  } else {
-    return <Tag color="red">danger</Tag>;
-  }
-};
-
-const getData = (locations) =>
-  locations.map(({country, city}) => {
-    const temperature = Math.floor(Math.random() * 101);
-    return {
-      key: country + city,
-      country,
-      city,
-      temperature,
-      status: getCondition(temperature),
-    };
-  });
-
-const Locations = () => {
+const TableLocation = ({ table }) => {
+  console.log(table);
   return (
     <div>
-      <Table columns={columns} dataSource={getData(locations)} />
+      <Table columns={columns} dataSource={table.data} />
     </div>
   );
 };
 
-export default Locations;
+const mapStateToProps = ({ table }) => ({ table });
+
+export default connect(mapStateToProps)(TableLocation);

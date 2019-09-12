@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import './Main.css';
-import { Modal, Button } from 'antd';
+
+import { Modal, Button, Spin } from 'antd';
+import { loadTableData } from '../../redux/actions/table';
+
 import TableLocation from '../../components/TableLocation/TableLocation';
 import SearchLocation from '../../components/SearchLocation/SearchLocation';
+import data from '../../data.json';
 
-const Main = () => {
+const Main = ({ loadTableData }) => {
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    const loadTableDataHolder = async () => {
+      await loadTableData(data);
+      setLoading(false);
+    };
+    loadTableDataHolder();
+  });
+
+  return loading ? (
+    <Spin />
+  ) : (
     <div className="main">
       <Button
         type="primary"
@@ -26,7 +42,7 @@ const Main = () => {
         ]}
         width="10"
         bodyStyle={{ height: '700px' }}
-        title="Look for a place or click on the map"
+        title="Look for a place"
         mask
         maskClosable
         onCancel={() => setShowModal(false)}
@@ -38,4 +54,7 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default connect(
+  null,
+  { loadTableData }
+)(Main);

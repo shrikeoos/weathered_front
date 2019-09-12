@@ -5,7 +5,6 @@ import { Form, Input, Spin } from 'antd';
 import LocationContainer from '../LocationContainer/LocationContainer';
 import {searchLocationByNameAction} from '../../redux/actions/location'
 
-
 import './FormSearch.css';
 
 const { Item } = Form;
@@ -26,6 +25,7 @@ const FormSearch = ({location, searchLocationByNameAction}) => {
               setLoading(false);
             }}
             style={{ width: '300px' }}
+            type="text"
           />
         </Item>
         {loading ? (
