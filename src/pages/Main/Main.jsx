@@ -22,7 +22,9 @@ const Main = ({ loadTableData }) => {
   });
 
   return loading ? (
-    <Spin />
+    <div className="main__spinner">
+      <Spin />
+    </div>
   ) : (
     <div className="main">
       <Button
@@ -41,8 +43,12 @@ const Main = ({ loadTableData }) => {
           </Button>,
         ]}
         width="10"
-        bodyStyle={{ height: '700px' }}
-        title="Look for a place"
+        bodyStyle={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '50px',
+        }}
         mask
         maskClosable
         onCancel={() => setShowModal(false)}

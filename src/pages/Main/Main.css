@@ -3,6 +3,13 @@
   padding: 12px;
 }
 
+.main__spinner {
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main__button {
   margin-bottom: 12px;
 }

@@ -4,7 +4,6 @@ import { Table } from 'antd';
 import columns from './meta/columns';
 
 const TableLocation = ({ table }) => {
-  console.log(table);
   return (
     <div>
       <Table columns={columns} dataSource={table.data} />

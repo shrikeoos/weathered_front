@@ -3,22 +3,17 @@ import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
 
 const columns = [
   {
-    title: 'Country',
-    dataIndex: 'country',
-    key: 'country',
-    sorter: (a, b) => a.country.localeCompare(b.country)
-  },
-  {
     title: 'City',
     dataIndex: 'city',
     key: 'city',
-    sorter: (a, b) => a.city.localeCompare(b.city)
+    sorter: (a, b) => a.city.localeCompare(b.city),
+    render: (text) => <a>{text}</a>,
   },
   {
     title: 'Temperature',
     dataIndex: 'temperature',
     key: 'temperature',
-    sorter: (a, b) => a.temperature - b.temperature
+    sorter: (a, b) => a.temperature - b.temperature,
   },
   {
     title: 'Condition',
@@ -34,7 +29,7 @@ const columns = [
     title: 'Action',
     dataIndex: 'action',
     key: 'action',
-    render: (text, record) => <DeleteRowButton row={record} />
+    render: (text, record) => <DeleteRowButton row={record} />,
   },
 ];
 
