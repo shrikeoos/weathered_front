@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
+import { Link } from 'react-router-dom';
 
 const columns = [
   {
@@ -7,7 +8,7 @@ const columns = [
     dataIndex: 'city',
     key: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
-    render: (text) => <a>{text}</a>,
+    render: (text) => <Link to={`/city/${text}`}>{text}</Link>,
   },
   {
     title: 'Temperature',

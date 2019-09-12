@@ -1,6 +1,8 @@
 import React from 'react';
 import { Layout } from 'antd';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -15,12 +17,14 @@ const App = () => {
   return (
     <div className="app">
       <Layout>
-        <Navbar />
-        <Content>
-          <Provider store={store}>
-            <Main />
-          </Provider>
-        </Content>
+        <Router>
+          <Navbar />
+          <Content>
+            <Provider store={store}>
+              <Route path="/" component={Main} />
+            </Provider>
+          </Content>
+        </Router>
       </Layout>
     </div>
   );
