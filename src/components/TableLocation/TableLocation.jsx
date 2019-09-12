@@ -18,11 +18,12 @@ const getCondition = (temperature) => {
 };
 
 const getData = (locations) =>
-  locations.map((location) => {
+  locations.map(({country, city}) => {
     const temperature = Math.floor(Math.random() * 101);
     return {
-      key: location,
-      name: location,
+      key: country + city,
+      country,
+      city,
       temperature,
       status: getCondition(temperature),
     };

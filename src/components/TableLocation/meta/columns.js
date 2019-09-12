@@ -1,3 +1,6 @@
+import React from 'react';
+import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
+
 const columns = [
   {
     title: 'Country',
@@ -6,10 +9,10 @@ const columns = [
     sorter: (a, b) => a.country.localeCompare(b.country)
   },
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    sorter: (a, b) => a.name.localeCompare(b.name)
+    title: 'City',
+    dataIndex: 'city',
+    key: 'city',
+    sorter: (a, b) => a.city.localeCompare(b.city)
   },
   {
     title: 'Temperature',
@@ -31,6 +34,7 @@ const columns = [
     title: 'Action',
     dataIndex: 'action',
     key: 'action',
+    render: (text, record) => <DeleteRowButton row={record} />
   },
 ];
 
