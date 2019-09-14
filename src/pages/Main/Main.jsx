@@ -47,7 +47,7 @@ const Main = ({ loadTableData }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '50px',
+          padding: '30px',
         }}
         mask
         maskClosable

@@ -27,7 +27,7 @@ const FormSearch = ({ location, getWeatherByCityAction }) => {
               setCities(await getCityByName(value));
               setLoading(false);
             }}
-            style={{ width: '300px' }}
+            style={{ width: 'auto' }}
             type="text"
           />
         </Item>

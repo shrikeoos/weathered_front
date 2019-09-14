@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 
+import './LocationCard.css';
+
 import { getWeatherByCoordinates } from '../../services/locationService';
 
 //TODO insert location into DB
@@ -20,7 +22,7 @@ const LocationCard = ({ city }) => {
   const { main, weather } = data;
 
   return (
-    <>
+    <div className="locationCard">
       <p>
         <b>{`${city.city}, ${country}`}</b>
       </p>
@@ -43,7 +45,7 @@ const LocationCard = ({ city }) => {
       <Button type="primary" onClick={save} ghost>
         Save
       </Button>
-    </>
+    </div>
   );
 };
 

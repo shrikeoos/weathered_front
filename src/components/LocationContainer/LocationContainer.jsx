@@ -1,17 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import LocationCard from '../LocationCard/LocationCard';
+import './LocationContainer.css';
 
 const Locations = ({ cities }) => {
-  return cities.length === 0
-    ? 'Not found...'
-    : cities.map((city) => <LocationCard key={'city'} city={city} />);
+  return (
+    <div className="locationContainer">
+      {cities.length === 0
+        ? 'Not found...'
+        : cities.map((city, index) => (
+            <div>
+              <LocationCard key={city.id} city={city} />
+              {index < cities.length && <div style={{ marginBottom: '12px' }}></div>}
+            </div>
+          ))}
+    </div>
+  );
 };
 
-const mapStateToProps = ({ location }) => {
-  return {
-    location,
-  };
-};
-
-export default connect(mapStateToProps)(Locations);
+export default Locations;
