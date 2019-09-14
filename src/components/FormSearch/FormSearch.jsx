@@ -3,15 +3,18 @@ import { connect } from 'react-redux';
 import { Form, Input, Spin } from 'antd';
 
 import LocationContainer from '../LocationContainer/LocationContainer';
-import { searchLocationByNameAction } from '../../redux/actions/location';
+import { getWeatherByCityAction } from '../../redux/actions/location';
+
+import { getCityByName } from '../../services/locationService';
 
 import './FormSearch.css';
 
 const { Item } = Form;
 const { Search } = Input;
 
-const FormSearch = ({ location, searchLocationByNameAction }) => {
+const FormSearch = ({ location, getWeatherByCityAction }) => {
   const [loading, setLoading] = useState(false);
+  const [cities, setCities] = useState([]);
   return (
     <div className="formSearch">
       <Form layout="inline">
@@ -21,7 +24,7 @@ const FormSearch = ({ location, searchLocationByNameAction }) => {
             enterButton="Search"
             onSearch={async (value) => {
               setLoading(true);
-              await searchLocationByNameAction(value);
+              setCities(await getCityByName(value));
               setLoading(false);
             }}
             style={{ width: '300px' }}
@@ -33,7 +36,7 @@ const FormSearch = ({ location, searchLocationByNameAction }) => {
             <Spin />
           </div>
         ) : (
-          Object.entries(location.data).length > 0 && <LocationContainer />
+          cities.length > 0 && <LocationContainer cities={cities} />
         )}
       </Form>
     </div>
@@ -42,7 +45,9 @@ const FormSearch = ({ location, searchLocationByNameAction }) => {
 
 const mapStateToProps = ({ location }) => ({ location });
 
+const mapDispatchToProps = (dispatch) => ({ getWeatherByCityAction });
+
 export default connect(
   mapStateToProps,
-  { searchLocationByNameAction }
+  mapDispatchToProps
 )(FormSearch);
