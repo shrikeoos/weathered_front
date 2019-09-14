@@ -49,6 +49,7 @@ const Main = ({ loadTableData }) => {
           justifyContent: 'center',
           padding: '30px',
         }}
+        closable={false}
         mask
         maskClosable
         onCancel={() => setShowModal(false)}

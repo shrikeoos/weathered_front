@@ -34,14 +34,6 @@ const LocationCard = ({ city }) => {
         <b>Condition: </b>
         {weather[0].description}
       </p>
-      <p>
-        <b>Humidity (%): </b>
-        {main.humidity}
-      </p>
-      <p>
-        <b>Pressure (hPa): </b>
-        {main.pressure}
-      </p>
       <Button type="primary" onClick={save} ghost>
         Save
       </Button>

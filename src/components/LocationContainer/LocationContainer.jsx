@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import LocationCard from '../LocationCard/LocationCard';
 import './LocationContainer.css';
 
@@ -8,13 +9,15 @@ const Locations = ({ cities }) => {
       {cities.length === 0
         ? 'Not found...'
         : cities.map((city, index) => (
-            <div>
-              <LocationCard key={city.id} city={city} />
-              {index < cities.length && <div style={{ marginBottom: '12px' }}></div>}
+            <div key={city.id}>
+              <LocationCard city={city} />
+              {index < cities.length - 1 && <div style={{ marginBottom: '12px' }}></div>}
             </div>
           ))}
     </div>
   );
 };
 
-export default Locations;
+const mapStateToProps = ({ location }) => ({ cities: location.cities });
+
+export default connect(mapStateToProps)(Locations);

@@ -16,11 +16,15 @@ class Map extends Component {
         }),
       ],
     });
+    this.markers = L.layerGroup().addTo(this.map);
   };
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.location.data !== prevProps.location.data) {
-      this.flyToNewLocation();
+    if (this.props.cities !== prevProps.cities) {
+      this.markers.clearLayers();
+      this.props.cities.forEach(({ latitude, longitude }) => {
+        L.marker([latitude, longitude]).addTo(this.markers);
+      });
     }
   };
 
@@ -31,9 +35,8 @@ class Map extends Component {
     }
   };
 
-  addMarker = () => {
-    const { lon, lat } = this.props.location.data.coord;
-    L.marker([lat, lon]).addTo(this.map);
+  addMarker = (lat, lon) => {
+    L.marker([lat, lon]);
   };
 
   disableControls = () => {
@@ -48,6 +51,6 @@ class Map extends Component {
   }
 }
 
-const mapStateToProps = ({ location }) => ({ location });
+const mapStateToProps = ({ location }) => ({ cities: location.cities });
 
 export default connect(mapStateToProps)(Map);
