@@ -8,6 +8,7 @@ import store from './redux/store';
 
 import Navbar from './components/Navbar/Navbar';
 import Main from './pages/Main/Main';
+import City from './pages/City/City';
 
 import './App.css';
 
@@ -17,14 +18,15 @@ const App = () => {
   return (
     <div className="app">
       <Layout>
-        <Router>
-          <Navbar />
-          <Content>
-            <Provider store={store}>
-              <Route path="/" component={Main} />
-            </Provider>
-          </Content>
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <Navbar />
+            <Content>
+              <Route exact path="/" component={Main} />
+              <Route path="/city" component={City} />
+            </Content>
+          </Router>
+        </Provider>
       </Layout>
     </div>
   );

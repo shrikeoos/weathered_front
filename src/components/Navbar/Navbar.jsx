@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <Menu mode="horizontal" defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }}>
       <Item key="1">
-        <Link to="/">Locations</Link>
+        <Link to="/">Home</Link>
       </Item>
     </Menu>
   );
