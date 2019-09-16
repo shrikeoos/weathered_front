@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getWeatherByCoordinates } from '../../services/locationService';
 import { Spin } from 'antd';
 
-import { getLatLon } from '../../services/locationService';
-import { getStatus } from '../../services/weatherService';
+import { getLatLon, getCityName } from '../../services/locationService';
+import CityCard from '../../components/CityCard/CityCard';
 import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
-
-const getCityName = (path) => path.split('/')[2];
 
 const City = (props) => {
   const [city, setCity] = useState({});
@@ -38,21 +36,7 @@ const City = (props) => {
         padding: '50px',
       }}
     >
-      <div>
-        <h1>
-          {`${city.sys.country}, ${city.name}`} {getStatus(city.main.temp)}
-        </h1>
-        <p>Description: {city.weather[0].description}</p>
-        <p>
-          Temperature (°C): {city.main.temp} (
-          <span style={{ color: 'blue' }}>min: {city.main.temp_min}</span>,{' '}
-          <span style={{ color: 'red' }}>max: {city.main.temp_max}</span>)
-        </p>
-        <p>Humidity (%): {city.main.humidity}</p>
-        <p>Pressure (hPa): {city.main.pressure}</p>
-        <p>Wind speed (m/s): {city.wind.speed}</p>
-        <p>Wind direction (degrees): {city.wind.deg}</p>
-      </div>
+      <CityCard city={city} />
       <SplashPhoto city={getCityName(props.location.pathname)} />
     </div>
   );

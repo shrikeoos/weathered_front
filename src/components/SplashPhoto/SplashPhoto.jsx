@@ -19,7 +19,9 @@ const SplashPhoto = ({ city }) => {
   ) : (
     <div>
       <img alt={photo.alt_description} width="900" height="500" src={photo.urls.full}></img>
-      <p>{`Unsplash - ${photo.description} - ${photo.user.name}`}</p>
+      <p>{`Unsplash - ${photo.description === null ? city : photo.description} - ${
+        photo.user.name
+      }`}</p>
     </div>
   );
 };

@@ -33,6 +33,8 @@ export const getCityByName = async (city) => {
   }
 };
 
+export const getCityName = (path) => path.split('/')[2];
+
 // Original form of params string: "?lat={value}&lon={value}"
 // This function removes removes the variables name from the
 // string and returns an array containing the values of the latitude and the longitude
