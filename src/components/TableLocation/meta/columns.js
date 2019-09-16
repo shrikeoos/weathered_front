@@ -14,10 +14,12 @@ const columns = [
     dataIndex: 'city',
     key: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
-    render: (text, { coord }) => <Link to={`/city?lat=${coord.lat}&lon=${coord.lon}`}>{text}</Link>,
+    render: (text, { coord }) => (
+      <Link to={`/city/${text}?lat=${coord.lat}&lon=${coord.lon}`}>{text}</Link>
+    ),
   },
   {
-    title: 'Temperature',
+    title: 'Temperature (°C)',
     dataIndex: 'temperature',
     key: 'temperature',
     sorter: (a, b) => a.temperature - b.temperature,

@@ -6,6 +6,8 @@ import { getLatLon } from '../../services/locationService';
 import { getStatus } from '../../services/weatherService';
 import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
 
+const getCityName = (path) => path.split('/')[2];
+
 const City = (props) => {
   const [city, setCity] = useState({});
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,7 @@ const City = (props) => {
       style={{
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-evenly',
         height: '93vh',
         backgroundColor: 'white',
         padding: '50px',
@@ -50,7 +53,7 @@ const City = (props) => {
         <p>Wind speed (m/s): {city.wind.speed}</p>
         <p>Wind direction (degrees): {city.wind.deg}</p>
       </div>
-      <SplashPhoto city={city.name} />
+      <SplashPhoto city={getCityName(props.location.pathname)} />
     </div>
   );
 };

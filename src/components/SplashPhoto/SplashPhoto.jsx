@@ -14,12 +14,13 @@ const SplashPhoto = ({ city }) => {
     getPhotoWrapper();
   }, []);
 
-  console.log(photo);
-
   return loading ? (
     'loading...'
   ) : (
-    <img alt="splash" width="900" height="500" src={photo.urls.full}></img>
+    <div>
+      <img alt={photo.alt_description} width="900" height="500" src={photo.urls.full}></img>
+      <p>{`Unsplash - ${photo.description} - ${photo.user.name}`}</p>
+    </div>
   );
 };
 
