@@ -6,11 +6,12 @@ export const getData = async (locations) => {
   return Promise.all(
     locations.map(async ({ country, city }) => {
       try {
-        const { main, weather } = await getWeatherByCity(city);
+        const { main, weather, coord } = await getWeatherByCity(city);
         return {
-          key: country + city,
+          key: `${country}, ${city}`,
           country,
           city,
+          coord,
           temperature: main.temp,
           condition: weather[0].description,
           status: getStatus(main.temp),
