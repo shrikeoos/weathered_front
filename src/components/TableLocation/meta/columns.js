@@ -2,7 +2,7 @@ import React from 'react';
 import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
 import { Link } from 'react-router-dom';
 
-const columns = [
+const getColumns = (unit) => [
   {
     title: 'Country',
     dataIndex: 'country',
@@ -19,7 +19,7 @@ const columns = [
     ),
   },
   {
-    title: 'Temperature (°C)',
+    title: `Temperature (°${unit.toUpperCase()})`,
     dataIndex: 'temperature',
     key: 'temperature',
     sorter: (a, b) => a.temperature - b.temperature,
@@ -43,4 +43,4 @@ const columns = [
   },
 ];
 
-export default columns;
+export default getColumns;

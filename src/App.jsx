@@ -22,6 +22,7 @@ const App = () => {
       <Layout>
         <Provider store={store}>
           <Router>
+            {/* {store.getState().user.username.length > 0 && <Navbar />} */}
             <Navbar />
             <Content>
               <Route path="/landing" component={Landing} />

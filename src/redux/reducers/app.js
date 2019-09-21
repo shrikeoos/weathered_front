@@ -4,10 +4,10 @@ const initialState = {
   unit: 'c',
 };
 
-export default (state = initialState, { action, payload }) => {
-  switch (action) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case SWITCH_TEMP_UNIT:
-      return { ...initialState, unit: payload };
+      return { ...state, unit: payload };
     default:
       return state;
   }

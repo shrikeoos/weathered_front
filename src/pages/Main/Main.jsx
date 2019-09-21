@@ -9,13 +9,13 @@ import TableLocation from '../../components/TableLocation/TableLocation';
 import SearchLocation from '../../components/SearchLocation/SearchLocation';
 import data from '../../data.json';
 
-const Main = ({ loadTableData }) => {
+const Main = ({ loadTableData, unit }) => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadTableDataHolder = async () => {
-      await loadTableData(data);
+      await loadTableData(data, unit);
       setLoading(false);
     };
     loadTableDataHolder();
@@ -61,7 +61,11 @@ const Main = ({ loadTableData }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  unit: state.app.unit,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { loadTableData }
 )(Main);
