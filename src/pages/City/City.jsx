@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getWeatherByCoordinates } from '../../services/locationService';
-import { Spin } from 'antd';
+import { Row, Col, Spin } from 'antd';
 
 import { getLatLon, getCityName } from '../../services/locationService';
 import CityCard from '../../components/CityCard/CityCard';
 import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
 
-const City = (props) => {
+import './City.css';
+
+const City = React.memo((props) => {
   const [city, setCity] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -20,26 +22,19 @@ const City = (props) => {
   }, []);
 
   return loading ? (
-    <div
-      style={{ height: '93vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
+    <div className="city__spinner">
       <Spin />
     </div>
   ) : (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        height: '93vh',
-        backgroundColor: 'white',
-        padding: '50px',
-      }}
-    >
-      <CityCard city={city} />
-      <SplashPhoto city={getCityName(props.location.pathname)} />
-    </div>
+    <Row className="city" type="flex" justify="center">
+      <Col xl={6} lg={12}>
+        <CityCard city={city} />
+      </Col>
+      <Col xl={12} lg={12}>
+        <SplashPhoto city={getCityName(props.location.pathname)} />
+      </Col>
+    </Row>
   );
-};
+});
 
 export default City;

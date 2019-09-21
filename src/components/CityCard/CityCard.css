@@ -1,0 +1,16 @@
+.cityCard__main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.cityCard__temp__group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cityCard__temp {
+  margin-left: 12px;
+}

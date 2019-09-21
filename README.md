@@ -8,4 +8,5 @@ This is the frontend of a weather forecast web application.
 
 ```
   REACT_APP_WEATHER_API_KEY
+  REACT_APP_UNSPLASH_ACCESS_KEY
 ```

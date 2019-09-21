@@ -2,26 +2,32 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { getCityName } from '../../services/locationService';
-import { getStatus } from '../../services/weatherService';
+import './CityCard.css';
 
-const CityCard = ({ city, location }) => {
+const CityCard = React.memo(({ city, location }) => {
   return (
-    <div>
-      <h1>
-        {`${city.sys.country}, ${getCityName(location.pathname)}`} {getStatus(city.main.temp)}
-      </h1>
-      <p>Description: {city.weather[0].description}</p>
+    <>
+      <div className="cityCard__main">
+        <h1>{`${city.sys.country}, ${getCityName(location.pathname)}`}</h1>
+        <div className="cityCard__temp__group">
+          <h1 className="cityCard__temp">{`${city.main.temp} °C`}</h1>
+          <img
+            src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`}
+            alt="weather icon"
+          />
+        </div>
+      </div>
       <p>
-        Temperature (°C): {city.main.temp} (
-        <span style={{ color: 'blue' }}>min: {city.main.temp_min}</span>,{' '}
+        (<span style={{ color: 'blue' }}>min: {city.main.temp_min}</span>,{' '}
         <span style={{ color: 'red' }}>max: {city.main.temp_max}</span>)
       </p>
+      <p>Description: {city.weather[0].description}</p>
       <p>Humidity (%): {city.main.humidity}</p>
       <p>Pressure (hPa): {city.main.pressure}</p>
       <p>Wind speed (m/s): {city.wind.speed}</p>
       <p>Wind direction (degrees): {city.wind.deg}</p>
-    </div>
+    </>
   );
-};
+});
 
 export default withRouter(CityCard);

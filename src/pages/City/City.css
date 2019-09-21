@@ -1,0 +1,15 @@
+.city {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; */
+  height: 93vh;
+  background-color: white;
+  padding: 50px;
+}
+
+.city__spinner {
+  height: 93vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -15,6 +15,12 @@ class Map extends Component {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         }),
       ],
+      maxBounds: new L.latLngBounds(
+        new L.LatLng(-89.98155760646617, -180),
+        new L.latLng(89.99346179538875, 180)
+      ),
+      maxBoundsViscosity: 0.75,
+      minZoom: 2,
     });
     this.markers = L.layerGroup().addTo(this.map);
   };
