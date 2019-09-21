@@ -9,13 +9,13 @@ const { TabPane } = Tabs;
 const Landing = () => {
   return (
     <div className="landing">
+      <h1>Welcome to weathered</h1>
       <Tabs
         defaultActiveKey="1"
         size="default"
         style={{
           width: '40%',
           height: 'auto',
-          boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.13)',
           padding: '12px',
         }}
       >
