@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Switch } from 'antd';
 
+import UserControl from '../UserControl/UserControl';
+
 import './Navbar.css';
 
 const { Item } = Menu;
@@ -13,10 +15,8 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </Item>
       <div className="navbar__user__control">
-        <div>
-          <Switch checkedChildren="°C" unCheckedChildren="°F" defaultChecked></Switch>
-        </div>
-        <div>user</div>
+        <Switch checkedChildren="°C" unCheckedChildren="°F" defaultChecked></Switch>
+        <UserControl />
       </div>
     </Menu>
   );

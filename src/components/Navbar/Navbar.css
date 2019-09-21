@@ -1,5 +1,8 @@
 .navbar__user__control {
   float: right;
+  margin-right: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
