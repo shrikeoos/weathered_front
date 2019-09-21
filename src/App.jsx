@@ -9,6 +9,7 @@ import store from './redux/store';
 import Navbar from './components/Navbar/Navbar';
 import Main from './pages/Main/Main';
 import City from './pages/City/City';
+import Settings from './pages/Settings/Settings';
 
 import './App.css';
 
@@ -24,6 +25,7 @@ const App = () => {
             <Content>
               <Route exact path="/" component={Main} />
               <Route path="/city" component={City} />
+              <Route path="/settings" component={Settings} />
             </Content>
           </Router>
         </Provider>

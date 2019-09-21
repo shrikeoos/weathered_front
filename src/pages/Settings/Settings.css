@@ -1,0 +1,12 @@
+.settings {
+  height: 93vh;
+  background-color: white;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 40%;
+  height: 40%;
+}

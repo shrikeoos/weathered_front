@@ -18,9 +18,11 @@ const UserControl = () => {
   return (
     <div className="userControl">
       <Dropdown overlay={menu}>
-        <Avatar style={{ backgroundColor: 'blue' }} size="large">
-          User
-        </Avatar>
+        <a href="#">
+          <Avatar style={{ backgroundColor: 'blue' }} size="large">
+            User
+          </Avatar>
+        </a>
       </Dropdown>
     </div>
   );
