@@ -26,14 +26,16 @@ const City = React.memo((props) => {
       <Spin />
     </div>
   ) : (
-    <Row className="city" type="flex" justify="center">
-      <Col xl={6} lg={12}>
-        <CityCard city={city} />
-      </Col>
-      <Col xl={12} lg={12}>
-        <SplashPhoto city={getCityName(props.location.pathname)} />
-      </Col>
-    </Row>
+    <div className="city">
+      <Row type="flex" justify="center">
+        <Col xl={6} lg={12}>
+          <CityCard city={city} />
+        </Col>
+        <Col xl={12} lg={12}>
+          <SplashPhoto city={getCityName(props.location.pathname)} />
+        </Col>
+      </Row>
+    </div>
   );
 });
 
