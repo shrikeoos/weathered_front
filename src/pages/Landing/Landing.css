@@ -1,0 +1,7 @@
+.landing {
+  height: 93vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

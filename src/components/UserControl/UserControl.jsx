@@ -9,7 +9,7 @@ const menu = (
       <Link to="/settings">Settings</Link>
     </Menu.Item>
     <Menu.Item key="logout">
-      <Link to="/login">Logout</Link>
+      <Link to="/landing">Logout</Link>
     </Menu.Item>
   </Menu>
 );
