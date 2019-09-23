@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getCityName } from '../../services/locationService';
+import { getCityName } from '../../utils/locationUtils';
 
 import { getRightTemperature } from '../../utils/temperatureUtils';
 import './CityCard.css';

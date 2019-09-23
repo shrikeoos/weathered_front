@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getWeatherByCoordinates } from '../../services/locationService';
 import { Row, Col, Spin } from 'antd';
 
-import { getLatLon, getCityName } from '../../services/locationService';
+import { getLatLon, getCityName } from '../../utils/locationUtils';
 import CityCard from '../../components/CityCard/CityCard';
 import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
 
