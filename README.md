@@ -7,6 +7,7 @@ This is the frontend of a weather forecast web application.
   - [Getting started](#getting-started)
     - [Prerequisite](#prerequisite)
     - [Start](#start)
+    - [Build](#build)
     - [Testing](#testing)
   - [Technology, framework and API](#technology-framework-and-api)
     - [Built with](#built-with)
@@ -35,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the project: `https://github.com/romain-ngo/weathered_front.git`
 
-1. Create a .env file in the root folder and set the following parameters:
+1. Create a `.env` file in the root folder and set the following parameters:
 
 ```
   REACT_APP_WEATHER_API_KEY
@@ -44,13 +45,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 A free key can be obtained from the website of the API. (see External API section below)
 
-2. Get all the dependencies: `npm install`
+3. Make sure you have npm installed. If not, it comes with [Node.js](https://nodejs.org/en/)
+
+4. Get all the dependencies: `npm install`
 
 ### Start
 
-1. Start the application with `npm start`.
+1. Start the application with `npm start`. (This will start a development build)
 
 2. Go to the following URL: `localhost:3000`
+
+### Build
+
+In order to get a production build, run the following command: `npm build`
 
 ### Testing
 
@@ -61,6 +68,7 @@ Run all tests with `npm test`
 ### Built with
 
 - Javascript (ES6)
+- create-react-app for boostraping the react project
 - React for the frontend
 - Redux for the state management
 - Antd and CSS for styling
