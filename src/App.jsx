@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Layout } from 'antd';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -6,13 +6,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-import Landing from './pages/Landing/Landing';
+import Loader from 'react-loader-spinner';
 import Navbar from './components/Navbar/Navbar';
-import Main from './pages/Main/Main';
-import City from './pages/City/City';
-import Settings from './pages/Settings/Settings';
-
 import './App.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+const Landing = lazy(() => import('./pages/Landing/Landing'));
+const Main = lazy(() => import('./pages/Main/Main'));
+const City = lazy(() => import('./pages/City/City'));
+const Settings = lazy(() => import('./pages/Settings/Settings'));
 
 const { Content } = Layout;
 
@@ -25,10 +27,12 @@ const App = () => {
             {/* {store.getState().user.username.length > 0 && <Navbar />} */}
             <Navbar />
             <Content>
-              <Route path="/landing" component={Landing} />
-              <Route exact path="/" component={Main} />
-              <Route path="/city" component={City} />
-              <Route path="/settings" component={Settings} />
+              <Suspense fallback={<>Loading...</>}>
+                <Route path="/landing" component={Landing} />
+                <Route exact path="/" component={Main} />
+                <Route path="/city" component={City} />
+                <Route path="/settings" component={Settings} />
+              </Suspense>
             </Content>
           </Router>
         </Provider>

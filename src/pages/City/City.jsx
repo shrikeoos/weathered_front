@@ -8,7 +8,7 @@ import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
 
 import './City.css';
 
-const City = React.memo((props) => {
+const City = (props) => {
   const [city, setCity] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -37,6 +37,6 @@ const City = React.memo((props) => {
       </Row>
     </div>
   );
-});
+};
 
 export default City;

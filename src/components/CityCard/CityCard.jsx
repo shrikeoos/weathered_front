@@ -7,7 +7,7 @@ import { getCityName } from '../../utils/locationUtils';
 import { getRightTemperature } from '../../utils/temperatureUtils';
 import './CityCard.css';
 
-const CityCard = React.memo(({ city, location, unit }) => {
+const CityCard = ({ city, location, unit }) => {
   return (
     <>
       <div className="cityCard__main">
@@ -35,7 +35,7 @@ const CityCard = React.memo(({ city, location, unit }) => {
       <p>Wind direction (degrees): {city.wind.deg}</p>
     </>
   );
-});
+};
 
 const mapStateToProps = (state) => ({
   unit: state.app.unit,
