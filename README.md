@@ -26,6 +26,7 @@ This is the frontend of a weather forecast web application.
   - App.jsx: root component
   - index.js: react entry point
 - .env: contains the environment variable (/!\ **DO NOT COMMIT** /!\)
+- .gitignore: all the files that should not be committed (usually the dependencies and .env)
 - package.json: npm dependency file
 
 ## Getting started
@@ -73,11 +74,12 @@ Run all tests with `npm test`
 - Redux for the state management
 - Antd and CSS for styling
 - Leaflet for the interactive map
+- Jest for unit testing
 
 ### External API
 
 The application make use of external APIs in order to get data related to cities, weather and such.
 
 - [OpenWeatherMap](https://openweathermap.org/api) for getting information related to the weather of a city.
-- [GeoDB cities](http://geodb-cities-api.wirefreethought.com/) for searching cities coordinates.
+- [GeoDB cities](http://geodb-cities-api.wirefreethought.com/) for searching cities coordinates (This one does not require an API key).
 - [Unsplash](https://unsplash.com/developers) for the splash photo of each city.

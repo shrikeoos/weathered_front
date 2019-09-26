@@ -7,4 +7,7 @@ export const getLatLon = (params) => {
   return cleanedParams.split('&');
 };
 
-export const getCityName = (path) => path.split('/')[2];
+export const getCityName = (path) => {
+  console.log(path);
+  return path.split('/')[2];
+};
