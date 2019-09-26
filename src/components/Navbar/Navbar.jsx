@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Switch } from 'antd';
+import { setCelsius, setFahrenheit } from '../../redux/actions/app';
 
 import UserControl from '../UserControl/UserControl';
 
@@ -8,17 +10,42 @@ import './Navbar.css';
 
 const { Item } = Menu;
 
-const Navbar = () => {
+const Navbar = ({ unit, setCelsius, setFahrenheit }) => {
   return (
-    <Menu mode="horizontal" defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }} theme="dark">
+    <Menu
+      mode="horizontal"
+      defaultSelectedKeys={['1']}
+      style={{ lineHeight: '64px' }}
+      theme="light"
+    >
       <Item key="1" style={{ float: 'left' }}>
         <Link to="/">Home</Link>
       </Item>
       <div className="navbar__user__control">
+        <Switch
+          checkedChildren="°C"
+          unCheckedChildren="°F"
+          defaultChecked={unit === 'c'}
+          onChange={(event) => {
+            return event ? setCelsius() : setFahrenheit();
+          }}
+        ></Switch>
         <UserControl />
       </div>
     </Menu>
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  unit: state.app.unit,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCelsius: () => dispatch(setCelsius()),
+  setFahrenheit: () => dispatch(setFahrenheit()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);

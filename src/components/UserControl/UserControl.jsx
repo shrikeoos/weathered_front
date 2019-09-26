@@ -19,7 +19,7 @@ const UserControl = () => {
     <div className="userControl">
       <Dropdown overlay={menu}>
         <a href="#">
-          <Avatar style={{ backgroundColor: 'blue' }} size="large">
+          <Avatar style={{ backgroundColor: 'orange' }} size="large">
             User
           </Avatar>
         </a>
