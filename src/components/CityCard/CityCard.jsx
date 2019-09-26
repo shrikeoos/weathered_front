@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { getCityName } from '../../utils/locationUtils';
 
@@ -35,6 +36,12 @@ const CityCard = ({ city, location, unit }) => {
       <p>Wind direction (degrees): {city.wind.deg}</p>
     </>
   );
+};
+
+CityCard.propTypes = {
+  city: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  unit: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

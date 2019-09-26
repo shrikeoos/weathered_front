@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { getWeatherByCoordinates } from '../../services/locationService';
+import PropTypes from 'prop-types';
 import { Row, Col, Spin } from 'antd';
 
-import { getLatLon, getCityName } from '../../utils/locationUtils';
 import CityCard from '../../components/CityCard/CityCard';
 import SplashPhoto from '../../components/SplashPhoto/SplashPhoto';
 
+import { getWeatherByCoordinates } from '../../services/locationService';
+import { getLatLon, getCityName } from '../../utils/locationUtils';
+
 import './City.css';
 
-const City = (props) => {
+const City = ({ location }) => {
   const [city, setCity] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getDataCity = async () => {
-      const [lat, lon] = getLatLon(props.location.search);
+      const [lat, lon] = getLatLon(location.search);
       setCity(await getWeatherByCoordinates(lat, lon));
       setLoading(false);
     };
@@ -32,11 +34,15 @@ const City = (props) => {
           <CityCard city={city} />
         </Col>
         <Col xl={12} lg={12}>
-          <SplashPhoto city={getCityName(props.location.pathname)} />
+          <SplashPhoto city={getCityName(location.pathname)} />
         </Col>
       </Row>
     </div>
   );
+};
+
+City.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default City;

@@ -6,10 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-import Loader from 'react-loader-spinner';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Landing = lazy(() => import('./pages/Landing/Landing'));
 const Main = lazy(() => import('./pages/Main/Main'));
@@ -27,7 +25,7 @@ const App = () => {
             {/* {store.getState().user.username.length > 0 && <Navbar />} */}
             <Navbar />
             <Content>
-              <Suspense fallback={<>Loading...</>}>
+              <Suspense fallback={<> </>}>
                 <Route path="/landing" component={Landing} />
                 <Route exact path="/" component={Main} />
                 <Route path="/city" component={City} />

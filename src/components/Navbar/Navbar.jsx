@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Menu, Switch } from 'antd';
 import { setCelsius, setFahrenheit } from '../../redux/actions/app';
 
@@ -29,11 +30,17 @@ const Navbar = ({ unit, setCelsius, setFahrenheit }) => {
           onChange={(event) => {
             return event ? setCelsius() : setFahrenheit();
           }}
-        ></Switch>
+        />
         <UserControl />
       </div>
     </Menu>
   );
+};
+
+Navbar.propTypes = {
+  unit: PropTypes.string.isRequired,
+  setCelsius: PropTypes.func.isRequired,
+  setFahrenheit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

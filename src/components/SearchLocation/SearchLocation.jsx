@@ -4,11 +4,10 @@ import Map from '../Map/Map';
 import './SearchLocation.css';
 
 const SearchLocation = () => {
-
   return (
     <div className="searchLocation">
       <FormSearch />
-      <Map  />
+      <Map />
     </div>
   );
 };

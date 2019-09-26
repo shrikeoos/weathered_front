@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import L from 'leaflet';
 
 class Map extends Component {
@@ -54,6 +55,11 @@ class Map extends Component {
     return <div id="mapid" style={{ width: '1500px', height: '650px' }} />;
   }
 }
+
+Map.propTypes = {
+  cities: PropTypes.array.isRequired,
+  focusedCity: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = ({ location }) => ({
   cities: location.cities,

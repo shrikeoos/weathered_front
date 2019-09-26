@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import LocationCard from '../LocationCard/LocationCard';
 import './LocationContainer.css';
 
-const Locations = ({ cities }) => {
+const LocationContainer = ({ cities }) => {
   return (
     <div className="locationContainer">
       {cities.length === 0
@@ -18,6 +19,10 @@ const Locations = ({ cities }) => {
   );
 };
 
+LocationContainer.propTypes = {
+  cities: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = ({ location }) => ({ cities: location.cities });
 
-export default connect(mapStateToProps)(Locations);
+export default connect(mapStateToProps)(LocationContainer);

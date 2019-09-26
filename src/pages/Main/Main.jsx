@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Main.css';
 
 import { Modal, Button, Spin } from 'antd';
@@ -59,6 +60,11 @@ const Main = ({ loadTableData, unit }) => {
       <TableLocation />
     </div>
   );
+};
+
+Main.propTypes = {
+  loadTableData: PropTypes.func.isRequired,
+  unit: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

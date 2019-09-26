@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import PropTypes from 'prop-types';
+import { Button, Spin } from 'antd';
 
 import { getRightTemperature } from '../../utils/temperatureUtils';
 
@@ -9,23 +10,29 @@ import './LocationCard.css';
 import { getWeatherByCoordinates } from '../../services/locationService';
 import { flyToLocation } from '../../redux/actions/location';
 
-//TODO insert location into DB
+// TODO insert location into DB
 const save = () => {};
 
 const LocationCard = ({ city, unit, flyToLocation }) => {
+  const [loading, setLoading] = useState(true);
   const { country, latitude, longitude } = city;
-  const [data, setData] = useState({ main: {}, weather: [{ description: '' }] });
+  const [data, setData] = useState({ main: { temp: 0 }, weather: [{ description: '' }] });
 
   useEffect(() => {
     const getWeatherByCoordinatesWrapper = async () => {
       setData(await getWeatherByCoordinates(latitude, longitude));
     };
     getWeatherByCoordinatesWrapper();
+    setLoading(false);
   }, []);
 
   const { main, weather } = data;
 
-  return (
+  return loading ? (
+    <div className="location__card__spinner">
+      <Spin />
+    </div>
+  ) : (
     <div className="locationCard">
       <p>
         <b>{`${city.city}, ${country}`}</b>
@@ -49,6 +56,12 @@ const LocationCard = ({ city, unit, flyToLocation }) => {
       </Button>
     </div>
   );
+};
+
+LocationCard.propTypes = {
+  city: PropTypes.object.isRequired,
+  unit: PropTypes.string.isRequired,
+  flyToLocation: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

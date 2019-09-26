@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { getPhoto } from '../../services/photoService';
 
@@ -18,10 +19,14 @@ const SplashPhoto = ({ city }) => {
     'loading...'
   ) : (
     <>
-      <img alt={photo.alt_description} width="900" height="500" src={photo.urls.full}></img>
+      <img alt={photo.alt_description} width="900" height="500" src={photo.urls.full} />
       <p>{`Unsplash - ${city} - ${photo.user.name}`}</p>
     </>
   );
+};
+
+SplashPhoto.propTypes = {
+  city: PropTypes.string.isRequired,
 };
 
 export default SplashPhoto;

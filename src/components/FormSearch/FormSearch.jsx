@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Form, Input, Spin } from 'antd';
 
 import LocationContainer from '../LocationContainer/LocationContainer';
@@ -39,6 +40,11 @@ const FormSearch = ({ cities, getCityByNameAction }) => {
       </Form>
     </div>
   );
+};
+
+FormSearch.propTypes = {
+  cities: PropTypes.array.isRequired,
+  getCityByNameAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ location }) => ({ cities: location.cities });
