@@ -32,12 +32,10 @@ class Map extends Component {
         L.marker([latitude, longitude]).addTo(this.markers);
       });
     }
-  };
 
-  flyToNewLocation = () => {
-    if (Object.entries(this.props.location.data).length > 0) {
-      const { lon, lat } = this.props.location.data.coord;
-      this.map.flyTo([lat, lon], 10);
+    if (this.props.focusedCity !== prevProps.focusedCity) {
+      const { latitude, longitude } = this.props.focusedCity;
+      this.map.flyTo([latitude, longitude], 10);
     }
   };
 
@@ -57,6 +55,9 @@ class Map extends Component {
   }
 }
 
-const mapStateToProps = ({ location }) => ({ cities: location.cities });
+const mapStateToProps = ({ location }) => ({
+  cities: location.cities,
+  focusedCity: location.focusedCity,
+});
 
 export default connect(mapStateToProps)(Map);

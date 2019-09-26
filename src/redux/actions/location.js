@@ -1,4 +1,4 @@
-import { ADD_LOCATION, SEARCH_CITIES } from '../actionTypes';
+import { ADD_LOCATION, SEARCH_CITIES, FLY_TO_LOCATION } from '../actionTypes';
 
 import {
   getWeatherByCity,
@@ -28,5 +28,12 @@ export const getCityByNameAction = (city) => {
       type: SEARCH_CITIES,
       payload: await getCityByName(city),
     });
+  };
+};
+
+export const flyToLocation = (location) => {
+  return {
+    type: FLY_TO_LOCATION,
+    payload: location,
   };
 };

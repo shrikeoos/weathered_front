@@ -7,11 +7,12 @@ import { getRightTemperature } from '../../utils/temperatureUtils';
 import './LocationCard.css';
 
 import { getWeatherByCoordinates } from '../../services/locationService';
+import { flyToLocation } from '../../redux/actions/location';
 
 //TODO insert location into DB
 const save = () => {};
 
-const LocationCard = ({ city, unit }) => {
+const LocationCard = ({ city, unit, flyToLocation }) => {
   const { country, latitude, longitude } = city;
   const [data, setData] = useState({ main: {}, weather: [{ description: '' }] });
 
@@ -40,12 +41,25 @@ const LocationCard = ({ city, unit }) => {
       <Button type="primary" onClick={save} ghost>
         Save
       </Button>
+      <Button
+        style={{ marginLeft: '5px', color: 'orange' }}
+        onClick={() => flyToLocation({ latitude, longitude })}
+      >
+        view
+      </Button>
     </div>
   );
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  flyToLocation: (location) => dispatch(flyToLocation(location)),
+});
 
 const mapStateToProps = (state) => ({
   unit: state.app.unit,
 });
 
-export default connect(mapStateToProps)(LocationCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LocationCard);

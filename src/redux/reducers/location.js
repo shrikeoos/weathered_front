@@ -1,8 +1,9 @@
-import { ADD_LOCATION, SEARCH_CITIES } from '../actionTypes';
+import { ADD_LOCATION, SEARCH_CITIES, FLY_TO_LOCATION } from '../actionTypes';
 
 const initialState = {
   data: {},
   cities: [],
+  focusedCity: {},
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -17,6 +18,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         cities: payload,
+      };
+
+    case FLY_TO_LOCATION:
+      return {
+        ...state,
+        focusedCity: payload,
       };
 
     default:
