@@ -13,7 +13,10 @@ import { flyToLocation } from '../../redux/actions/location';
 // TODO insert location into DB
 const save = () => {};
 
-const LocationCard = ({ city, unit, flyToLocation }) => {
+// TODO: check on id
+const tableContainsLocation = (table, city) => {};
+
+const LocationCard = ({ city, unit, table, flyToLocation }) => {
   const [loading, setLoading] = useState(true);
   const { country, latitude, longitude } = city;
   const [data, setData] = useState({ main: { temp: 0 }, weather: [{ description: '' }] });
@@ -61,15 +64,17 @@ const LocationCard = ({ city, unit, flyToLocation }) => {
 LocationCard.propTypes = {
   city: PropTypes.object.isRequired,
   unit: PropTypes.string.isRequired,
+  table: PropTypes.array.isRequired,
   flyToLocation: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  flyToLocation: (location) => dispatch(flyToLocation(location)),
-});
-
 const mapStateToProps = (state) => ({
   unit: state.app.unit,
+  table: state.table.data,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  flyToLocation: (location) => dispatch(flyToLocation(location)),
 });
 
 export default connect(

@@ -45,6 +45,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 
 A free key can be obtained from the website of the API. (see External API section below)
+`Everytime their value changes, the server must be restarted in order to be taken into account`
 
 3. Make sure you have npm installed. If not, it comes with [Node.js](https://nodejs.org/en/)
 
@@ -58,7 +59,8 @@ A free key can be obtained from the website of the API. (see External API sectio
 
 ### Build
 
-In order to get a production build, run the following command: `npm build`
+In order to get a production build, run the following command: `npm build`. 
+It will create a `build` folder, the content must be served from a web server.
 
 ### Testing
 
