@@ -1,6 +1,6 @@
 # weathered_front
 
-This is the frontend of a weather forecast web application.
+This is the frontend of a weather forecast web application. The backend can be found [here](https://github.com/romain-ngo/weathered_front).
 
 - [weathered_front](#weatheredfront)
   - [Folder architecture](#folder-architecture)
@@ -20,12 +20,12 @@ This is the frontend of a weather forecast web application.
 - src: this is the main folder containing all the source
   - components: contains all the react component
   - pages: contains the pages called by react-router
-  - redux: contains the redux store, the reducers, the action creators and the actions type
+  - redux: contains the redux store, the reducers, the action creators and the action types
   - services: contains the functions called by the action creators
   - utils: contains helper function
   - App.jsx: root component
   - index.js: react entry point
-- .env: contains the environment variable (/!\ **DO NOT COMMIT** /!\)
+- .env: contains the environment variable (/!\ **DO NOT COMMIT** /!\\)
 - .gitignore: all the files that should not be committed (usually the dependencies and .env)
 - package.json: npm dependency file
 
@@ -44,8 +44,8 @@ These instructions will get you a copy of the project up and running on your loc
   REACT_APP_UNSPLASH_ACCESS_KEY
 ```
 
+`Everytime their value changes, the server must be restarted in order to be taken into account.`  
 A free key can be obtained from the website of the API. (see External API section below)
-`Everytime their value changes, the server must be restarted in order to be taken into account`
 
 3. Make sure you have npm installed. If not, it comes with [Node.js](https://nodejs.org/en/)
 
@@ -53,13 +53,13 @@ A free key can be obtained from the website of the API. (see External API sectio
 
 ### Start
 
-1. Start the application with `npm start`. (This will start a development build)
+1. Start the application with `npm start`. (This will start a development build, do not do this on a production environment.)
 
 2. Go to the following URL: `localhost:3000`
 
 ### Build
 
-In order to get a production build, run the following command: `npm build`. 
+In order to get an optimized production build, run the following command: `npm build`. 
 It will create a `build` folder, the content must be served from a web server.
 
 ### Testing
@@ -73,7 +73,7 @@ Run all tests with `npm test`
 - Javascript (ES6)
 - create-react-app for boostraping the react project
 - React for the frontend
-- Redux for the state management
+- Redux for state management
 - Antd and CSS for styling
 - Leaflet for the interactive map
 - Jest for unit testing
