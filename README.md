@@ -1,6 +1,6 @@
 # weathered_front
 
-This is the frontend of a weather forecast web application. The backend can be found [here](https://github.com/romain-ngo/weathered_front).
+This is the frontend of a weather forecast web application. The backend can be found [here](https://github.com/romain-ngo/weathered_back).
 
 - [weathered_front](#weatheredfront)
   - [Folder architecture](#folder-architecture)
@@ -40,8 +40,9 @@ These instructions will get you a copy of the project up and running on your loc
 1. Create a `.env` file in the root folder and set the following parameters:
 
 ```
-  REACT_APP_WEATHER_API_KEY
-  REACT_APP_UNSPLASH_ACCESS_KEY
+  REACT_APP_WEATHER_API_KEY="OpenWeatherMap API key"
+  REACT_APP_UNSPLASH_ACCESS_KEY="Unsplash API key"
+  REACT_APP_BACKEND_URL="Backend url and port (e.g. localhost:5000)"
 ```
 
 `Everytime their value changes, the server must be restarted in order to be taken into account.`  
@@ -59,7 +60,7 @@ A free key can be obtained from the website of the API. (see External API sectio
 
 ### Build
 
-In order to get an optimized production build, run the following command: `npm build`. 
+In order to get an optimized production build, run the following command: `npm build`.
 It will create a `build` folder, the content must be served from a web server.
 
 ### Testing

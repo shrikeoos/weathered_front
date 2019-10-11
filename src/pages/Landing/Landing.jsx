@@ -13,6 +13,7 @@ const Landing = () => {
       <Tabs
         defaultActiveKey="1"
         size="default"
+        type="card"
         style={{
           width: '40%',
           height: 'auto',
