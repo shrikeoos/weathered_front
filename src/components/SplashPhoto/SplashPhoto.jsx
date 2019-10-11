@@ -19,7 +19,7 @@ const SplashPhoto = ({ city }) => {
     'loading...'
   ) : (
     <>
-      <img alt={photo.alt_description} width="900" height="500" src={photo.urls.full} />
+      <img alt={photo.alt_description} width="900" height="500" src={photo.urls.regular} />
       <p>{`Unsplash - ${city} - ${photo.user.name}`}</p>
     </>
   );
