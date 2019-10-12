@@ -9,4 +9,11 @@ export const createUser = async (user) => {
   }
 };
 
-export const loginUser = (user) => {};
+export const loginUser = async (user) => {
+  try {
+    return await axios.post(`http://${process.env.REACT_APP_BACKEND_URL}/login`, user);
+  } catch (error) {
+    const { data, status } = error.response;
+    return { data, status };
+  }
+};

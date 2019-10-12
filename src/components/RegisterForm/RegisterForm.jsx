@@ -9,10 +9,10 @@ const registerUser = (validateFields) => {
   validateFields(async (error, values) => {
     if (!error) {
       const { data, status } = await createUser(values);
-      if (status === 400) {
-        message.error(data);
-      } else {
+      if (status === 201) {
         message.success(data);
+      } else {
+        message.error(data);
       }
     }
   });
@@ -92,4 +92,4 @@ RegisterForm.propTypes = {
   form: PropTypes.object.isRequired,
 };
 
-export default Form.create({ name: 'register' })(RegisterForm);
+export default Form.create({ name: 'register_form' })(RegisterForm);

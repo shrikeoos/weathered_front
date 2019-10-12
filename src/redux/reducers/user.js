@@ -1,4 +1,4 @@
-import { LOGIN } from '../actionTypes';
+import { LOG_USER_IN } from '../actionTypes';
 
 const initialState = {
   email: '',
@@ -6,8 +6,9 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
-    case LOGIN:
+    case LOG_USER_IN:
       return { ...state, email: payload.email, username: payload.username };
     default:
       return state;
