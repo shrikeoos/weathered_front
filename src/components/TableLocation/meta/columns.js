@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { capitalize } from '../../../utils/appUtils';
 import { getRightTemperature } from '../../../utils/temperatureUtils';
 import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
 
@@ -9,6 +10,7 @@ const getColumns = (unit) => [
     dataIndex: 'country',
     key: 'country',
     sorter: (a, b) => a.country.localeCompare(b.city),
+    render: (text) => capitalize(text),
   },
   {
     title: 'City',
@@ -16,7 +18,7 @@ const getColumns = (unit) => [
     key: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
     render: (text, { coord }) => (
-      <Link to={`/city/${text}?lat=${coord.lat}&lon=${coord.lon}`}>{text}</Link>
+      <Link to={`/city/${text}?lat=${coord.lat}&lon=${coord.lon}`}>{capitalize(text)}</Link>
     ),
   },
   {

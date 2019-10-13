@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getCityName } from '../../utils/locationUtils';
+import { capitalize } from '../../utils/appUtils';
 
 import { getRightTemperature } from '../../utils/temperatureUtils';
 import './CityCard.css';
@@ -12,7 +13,7 @@ const CityCard = ({ city, location, unit }) => {
   return (
     <>
       <div className="cityCard__main">
-        <h1>{`${city.sys.country}, ${getCityName(location.pathname)}`}</h1>
+        <h1>{`${city.sys.country}, ${capitalize(getCityName(location.pathname))}`}</h1>
         <div className="cityCard__temp__group">
           <h1 className="cityCard__temp">{`${getRightTemperature(
             unit,
