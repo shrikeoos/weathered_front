@@ -1,6 +1,7 @@
 import React from 'react';
-import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
 import { Link } from 'react-router-dom';
+import { getRightTemperature } from '../../../utils/temperatureUtils';
+import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
 
 const getColumns = (unit) => [
   {
@@ -23,6 +24,7 @@ const getColumns = (unit) => [
     dataIndex: 'temperature',
     key: 'temperature',
     sorter: (a, b) => a.temperature - b.temperature,
+    render: (text) => getRightTemperature(unit, text),
   },
   {
     title: 'Condition',
