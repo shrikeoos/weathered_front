@@ -6,3 +6,4 @@ export const SWITCH_TEMP_UNIT = 'SWITCH_TEMP_UNIT';
 export const FLY_TO_LOCATION = 'FLY_TO_LOCATION';
 export const LOG_USER_IN = 'LOG_USER_IN';
 export const LOG_USER_OUT = 'LOG_USER_OUT';
+export const USER_UPDATE = 'USER_UPDATE';

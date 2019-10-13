@@ -16,7 +16,7 @@ const logUserIn = (validateFields, loginUserAction, loadTableData, history) => {
       if (status === 200) {
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-        loginUserAction({ email: data.email, username: data.username });
+        loginUserAction({ id: data.id, email: data.email, username: data.username });
         loadTableData(data.locations);
         history.push('/');
       } else {

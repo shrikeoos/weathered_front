@@ -9,8 +9,7 @@ import { getReducedUsername } from '../../utils/userUtils';
 import './UserControl.css';
 
 const logUserOut = (logoutUser, emptyTable) => {
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('accessToken');
+  localStorage.clear();
   logoutUser();
   emptyTable();
 };

@@ -1,4 +1,4 @@
-import { LOG_USER_IN, LOG_USER_OUT } from '../actionTypes';
+import { LOG_USER_IN, LOG_USER_OUT, USER_UPDATE } from '../actionTypes';
 
 export const loginUserAction = (user) => ({
   type: LOG_USER_IN,
@@ -7,5 +7,10 @@ export const loginUserAction = (user) => ({
 
 export const logoutUserAction = () => ({
   type: LOG_USER_OUT,
-  payload: { email: '', username: '' },
+  payload: { email: '', username: '', id: -1 },
+});
+
+export const updateUserAction = (user) => ({
+  type: USER_UPDATE,
+  payload: user,
 });
