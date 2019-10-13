@@ -1,4 +1,4 @@
-import { LOG_USER_IN } from '../actionTypes';
+import { LOG_USER_IN, LOG_USER_OUT } from '../actionTypes';
 
 const initialState = {
   email: '',
@@ -8,7 +8,9 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case LOG_USER_IN:
-      return { ...state, email: payload.email, username: payload.username };
+      return { ...state, ...payload };
+    case LOG_USER_OUT:
+      return { ...state, ...payload };
     default:
       return state;
   }
