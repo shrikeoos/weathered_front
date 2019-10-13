@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Input, Button, message } from 'antd';
@@ -9,10 +9,11 @@ import './Settings.css';
 
 const { Item } = Form;
 
-const updateUser = (validateFields, id, updateUserAction) => {
+const updateUser = (validateFields, id, updateUserAction, setIsLoading) => {
   validateFields(async (error, values) => {
     if (!error) {
       const newValue = { id, ...values };
+      setIsLoading(true);
       const { data, status } = await updateUserService(newValue);
       if (status === 200) {
         updateUserAction(newValue);
@@ -20,12 +21,14 @@ const updateUser = (validateFields, id, updateUserAction) => {
       } else {
         message.error(data);
       }
+      setIsLoading(false);
     }
   });
 };
 
 const Settings = ({ form, id, email, username, updateUserAction }) => {
   const { getFieldDecorator, validateFields } = form;
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="settings">
       <div className="form">
@@ -33,7 +36,7 @@ const Settings = ({ form, id, email, username, updateUserAction }) => {
           layout="vertical"
           onSubmit={(event) => {
             event.preventDefault();
-            updateUser(validateFields, id, updateUserAction);
+            updateUser(validateFields, id, updateUserAction, setIsLoading);
           }}
         >
           <Item label="Email">
@@ -59,7 +62,7 @@ const Settings = ({ form, id, email, username, updateUserAction }) => {
             })(<Input.Password />)}
           </Item>
           <Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={isLoading}>
               Change
             </Button>
           </Item>

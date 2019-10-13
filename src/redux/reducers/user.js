@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
     case LOG_USER_OUT:
       return { ...state, ...payload };
     case USER_UPDATE:
-      return { ...state, ...payload };
+      return { ...state, email: payload.email, username: payload.username };
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Layout } from 'antd';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 import { Provider } from 'react-redux';
@@ -19,13 +20,15 @@ const Settings = lazy(() => import('./pages/Settings/Settings'));
 
 const { Content } = Layout;
 
+export const history = createBrowserHistory();
+
 const App = () => {
   return (
     <div className="app">
       <Layout>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Router>
+            <Router history={history}>
               {/* {store.getState().user.username.length > 0 && <Navbar />} */}
               <Navbar />
               <Content>

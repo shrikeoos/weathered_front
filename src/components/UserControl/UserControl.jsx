@@ -3,34 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu, Avatar } from 'antd';
+import { logoutUser } from '../../services/userService';
 import { logoutUserAction } from '../../redux/actions/user';
-import { emptyTableData } from '../../redux/actions/table';
 import { getReducedUsername } from '../../utils/userUtils';
 import './UserControl.css';
 
-const logUserOut = (logoutUser, emptyTable) => {
-  localStorage.clear();
-  logoutUser();
-  emptyTable();
-};
-
-const getMenu = (logoutUser, emptyTable) => (
+const getMenu = () => (
   <Menu>
     <Menu.Item key="settings">
       <Link to="/settings">Settings</Link>
     </Menu.Item>
     <Menu.Item key="logout">
-      <Link to="/landing" onClick={() => logUserOut(logoutUser, emptyTable)}>
+      <Link to="/landing" onClick={() => logoutUser()}>
         Logout
       </Link>
     </Menu.Item>
   </Menu>
 );
 
-const UserControl = ({ username, logoutUser, emptyTable }) => {
+const UserControl = ({ username }) => {
   return (
     <div className="userControl">
-      <Dropdown overlay={getMenu(logoutUser, emptyTable)}>
+      <Dropdown overlay={getMenu(logoutUser)}>
         <a href="#">
           <Avatar style={{ backgroundColor: 'orange' }} size="large">
             {getReducedUsername(username)}
@@ -43,8 +37,6 @@ const UserControl = ({ username, logoutUser, emptyTable }) => {
 
 UserControl.propTypes = {
   username: PropTypes.string.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  emptyTable: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = (state) => ({
@@ -53,7 +45,6 @@ const mapStatetoProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(logoutUserAction()),
-  emptyTable: () => dispatch(emptyTableData()),
 });
 
 export default connect(

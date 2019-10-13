@@ -2,8 +2,6 @@ import React from 'react';
 import { Tag } from 'antd';
 import { getWeatherByCity } from './locationService';
 
-import { getRightTemperature } from '../utils/temperatureUtils';
-
 export const getData = async (locations, unit) => {
   return Promise.all(
     locations.map(async ({ country, city }) => {
