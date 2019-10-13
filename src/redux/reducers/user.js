@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case LOG_USER_IN:
       return { ...state, email: payload.email, username: payload.username };

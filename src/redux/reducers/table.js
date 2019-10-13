@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case LOAD_TABLE_DATA:
       return {

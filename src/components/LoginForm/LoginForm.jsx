@@ -67,7 +67,7 @@ LoginForm.propTypes = {
   form: PropTypes.object.isRequired,
   loginUserAction: PropTypes.func.isRequired,
   loadTableData: PropTypes.func.isRequired,
-  history: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
