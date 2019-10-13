@@ -47,10 +47,10 @@ const LoginForm = ({ form, loginUserAction, loadTableData, history }) => {
         {getFieldDecorator('password', {
           rules: [{ required: true, message: 'Password required' }],
         })(
-          <Input
+          <Input.Password
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="password"
-            type="password"
+            visibilityToggle
           />
         )}
       </Item>

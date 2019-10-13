@@ -58,10 +58,11 @@ const RegisterForm = ({ form }) => {
         {getFieldDecorator('password', {
           rules: [{ required: true, message: 'Password required' }],
         })(
-          <Input
+          <Input.Password
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="password"
+            visibilityToggle
           />
         )}
       </Item>
@@ -72,10 +73,11 @@ const RegisterForm = ({ form }) => {
             { validator: comparePassword },
           ],
         })(
-          <Input
+          <Input.Password
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="confirm password"
+            visibilityToggle
           />
         )}
       </Item>

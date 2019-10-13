@@ -34,7 +34,6 @@ const App = () => {
                   <PrivateRoute exact path="/">
                     <Main />
                   </PrivateRoute>
-                  {/* <Route path="/city" component={City} /> */}
                   <PrivateRoute path="/city">
                     <City />
                   </PrivateRoute>
