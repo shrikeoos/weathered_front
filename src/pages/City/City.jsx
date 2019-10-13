@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Row, Col, Spin } from 'antd';
 
@@ -42,7 +43,7 @@ const City = ({ location }) => {
 };
 
 City.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired, // location comes from react-router-dom
 };
 
-export default City;
+export default withRouter(City);

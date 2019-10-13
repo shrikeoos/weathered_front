@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Layout } from 'antd';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
@@ -30,9 +31,16 @@ const App = () => {
               <Content>
                 <Suspense fallback={null}>
                   <Route path="/landing" component={Landing} />
-                  <Route exact path="/" component={Main} />
-                  <Route path="/city" component={City} />
-                  <Route path="/settings" component={Settings} />
+                  <PrivateRoute exact path="/">
+                    <Main />
+                  </PrivateRoute>
+                  {/* <Route path="/city" component={City} /> */}
+                  <PrivateRoute path="/city">
+                    <City />
+                  </PrivateRoute>
+                  <PrivateRoute path="/settings">
+                    <Settings />
+                  </PrivateRoute>
                 </Suspense>
               </Content>
             </Router>
