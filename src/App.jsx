@@ -4,7 +4,9 @@ import { Layout } from 'antd';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { store, persistor } from './redux/store';
+
+import { PersistGate } from 'redux-persist/integration/react';
 
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
@@ -21,18 +23,20 @@ const App = () => {
     <div className="app">
       <Layout>
         <Provider store={store}>
-          <Router>
-            {/* {store.getState().user.username.length > 0 && <Navbar />} */}
-            <Navbar />
-            <Content>
-              <Suspense fallback={<> </>}>
-                <Route path="/landing" component={Landing} />
-                <Route exact path="/" component={Main} />
-                <Route path="/city" component={City} />
-                <Route path="/settings" component={Settings} />
-              </Suspense>
-            </Content>
-          </Router>
+          <PersistGate loading={null} persistor={persistor}>
+            <Router>
+              {/* {store.getState().user.username.length > 0 && <Navbar />} */}
+              <Navbar />
+              <Content>
+                <Suspense fallback={null}>
+                  <Route path="/landing" component={Landing} />
+                  <Route exact path="/" component={Main} />
+                  <Route path="/city" component={City} />
+                  <Route path="/settings" component={Settings} />
+                </Suspense>
+              </Content>
+            </Router>
+          </PersistGate>
         </Provider>
       </Layout>
     </div>
