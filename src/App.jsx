@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Layout } from 'antd';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
@@ -22,33 +22,40 @@ const { Content } = Layout;
 
 export const history = createBrowserHistory();
 
+const MainRoute = () => (
+  <>
+    <Navbar />
+    <Layout>
+      <Content>
+        <PrivateRoute exact path="/">
+          <Main />
+        </PrivateRoute>
+        <PrivateRoute path="/city">
+          <City />
+        </PrivateRoute>
+        <PrivateRoute path="/settings">
+          <Settings />
+        </PrivateRoute>
+      </Content>
+    </Layout>
+  </>
+);
+
 const App = () => {
   return (
     <div className="app">
-      <Layout>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Router history={history}>
-              {/* {store.getState().user.username.length > 0 && <Navbar />} */}
-              <Navbar />
-              <Content>
-                <Suspense fallback={null}>
-                  <Route path="/landing" component={Landing} />
-                  <PrivateRoute exact path="/">
-                    <Main />
-                  </PrivateRoute>
-                  <PrivateRoute path="/city">
-                    <City />
-                  </PrivateRoute>
-                  <PrivateRoute path="/settings">
-                    <Settings />
-                  </PrivateRoute>
-                </Suspense>
-              </Content>
-            </Router>
-          </PersistGate>
-        </Provider>
-      </Layout>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router history={history}>
+            <Suspense fallback={null}>
+              <Switch>
+                <Route exact path="/(landing)" component={Landing} />
+                <Route component={MainRoute} />
+              </Switch>
+            </Suspense>
+          </Router>
+        </PersistGate>
+      </Provider>
     </div>
   );
 };
