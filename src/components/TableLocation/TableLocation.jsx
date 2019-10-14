@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import getColumns from './meta/columns';
 
-const TableLocation = ({ table, unit, username }) => {
+const TableLocation = ({ table, unit }) => {
   return (
     <div>
       <Table columns={getColumns(unit)} dataSource={table.data} />

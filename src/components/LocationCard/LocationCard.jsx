@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Spin } from 'antd';
+import { Button, Spin, message } from 'antd';
 
 import { getRightTemperature } from '../../utils/temperatureUtils';
 
 import './LocationCard.css';
 
-import { getWeatherByCoordinates } from '../../services/locationService';
+import { getWeatherByCoordinates, addLocation } from '../../services/locationService';
 import { flyToLocation } from '../../redux/actions/location';
 
 // TODO insert location into DB
-const save = () => {};
+const save = async (location, setLoadingAddLocation) => {
+  try {
+    setLoadingAddLocation(true);
+    await addLocation(location);
 
-// TODO: check on id
-const tableContainsLocation = (table, city) => {};
+    //await addLocationToUser()
+    message.success('location added');
+  } catch (error) {
+    message.error('fail');
+  } finally {
+    setLoadingAddLocation(false);
+  }
+};
+
+const tableContainsLocation = (table, city) => table.some((location) => location.id === city.id);
 
 const LocationCard = ({ city, unit, table, flyToLocation }) => {
   const [loading, setLoading] = useState(true);
+  const [loadingAddLocation, setLoadingAddLocation] = useState(false);
   const { country, latitude, longitude } = city;
   const [data, setData] = useState({ main: { temp: 0 }, weather: [{ description: '' }] });
 
@@ -48,7 +60,13 @@ const LocationCard = ({ city, unit, table, flyToLocation }) => {
         <b>Condition: </b>
         {weather[0].description}
       </p>
-      <Button type="primary" onClick={save} ghost>
+      <Button
+        type="primary"
+        onClick={() => save(city, setLoadingAddLocation)}
+        ghost
+        disabled={tableContainsLocation(table, city)}
+        loading={loadingAddLocation}
+      >
         Save
       </Button>
       <Button

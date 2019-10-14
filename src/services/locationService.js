@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getNewRefreshToken } from './tokenService';
 
 export const getWeatherByCity = async (locationInput) => {
   try {
@@ -18,7 +19,7 @@ export const getWeatherByCoordinates = async (lat, lon) => {
     );
     return data;
   } catch (error) {
-    return {};
+    return { status: 400 };
   }
 };
 
@@ -29,6 +30,20 @@ export const getCityByName = async (city) => {
     );
     return data.data;
   } catch (error) {
-    return {};
+    return { status: 400 };
+  }
+};
+
+export const addLocation = async (location) => {
+  try {
+    await getNewRefreshToken();
+    return await axios.post(`${process.env.REACT_APP_BACKEND_URL}/location`, location, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
+  } catch (error) {
+    const { data, status } = error.response;
+    return { data, status };
   }
 };

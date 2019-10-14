@@ -2,13 +2,14 @@ import React from 'react';
 import { Tag } from 'antd';
 import { getWeatherByCity } from './locationService';
 
-export const getData = async (locations, unit) => {
+export const getData = async (locations) => {
   return Promise.all(
-    locations.map(async ({ country, city }) => {
+    locations.map(async ({ id, country, city }) => {
       try {
         const { main, weather, coord } = await getWeatherByCity(city);
         return {
           key: `${country}, ${city}`,
+          id,
           country,
           city,
           coord,

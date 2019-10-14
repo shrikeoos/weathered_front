@@ -17,8 +17,10 @@ export const getNewRefreshToken = async () => {
   const refreshToken = localStorage.getItem('refreshToken');
   if (isAccessTokenExpired(accessToken)) {
     if (!isRefreshTokenExpired(refreshToken)) {
-      const [data, status] = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/refresh`, {
-        Authorization: `Bearer ${refreshToken}`,
+      const { data, status } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/refresh`, {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
       });
       if (status === 200) {
         localStorage.setItem('accessToken', data.accessToken);
