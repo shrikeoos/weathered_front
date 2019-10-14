@@ -14,7 +14,7 @@ export const getData = async (locations, unit) => {
           coord,
           temperature: main.temp,
           condition: weather[0].description,
-          status: getStatus(main.temp),
+          status: main.temp,
         };
       } catch (error) {
         console.log(error);

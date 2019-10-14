@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { capitalize } from '../../../utils/appUtils';
 import { getRightTemperature } from '../../../utils/temperatureUtils';
 import DeleteRowButton from '../../DeleteRowButton/DeleteRowButton';
+import { getStatus } from '../../../services/weatherService';
 
 const getColumns = (unit) => [
   {
@@ -38,6 +39,7 @@ const getColumns = (unit) => [
     dataIndex: 'status',
     key: 'status',
     sorter: (a, b) => a.temperature - b.temperature,
+    render: (text) => getStatus(parseFloat(text)),
   },
   {
     title: 'Action',
