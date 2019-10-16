@@ -7,16 +7,20 @@ import { getRightTemperature } from '../../utils/temperatureUtils';
 
 import './LocationCard.css';
 
-import { getWeatherByCoordinates, addLocation } from '../../services/locationService';
+import {
+  getWeatherByCoordinates,
+  addLocation,
+  addLocationToUser,
+} from '../../services/locationService';
 import { flyToLocation } from '../../redux/actions/location';
+import { loadTableData } from '../../redux/actions/table';
 
-// TODO insert location into DB
-const save = async (location, setLoadingAddLocation) => {
+const saveLocation = async (location, setLoadingAddLocation, userId, loadTableData) => {
   try {
     setLoadingAddLocation(true);
     await addLocation(location);
-
-    //await addLocationToUser()
+    await addLocationToUser(location.id, userId);
+    await loadTableData([location]);
     message.success('location added');
   } catch (error) {
     message.error('fail');
@@ -27,7 +31,7 @@ const save = async (location, setLoadingAddLocation) => {
 
 const tableContainsLocation = (table, city) => table.some((location) => location.id === city.id);
 
-const LocationCard = ({ city, unit, table, flyToLocation }) => {
+const LocationCard = ({ city, unit, table, flyToLocation, userId, loadTableData }) => {
   const [loading, setLoading] = useState(true);
   const [loadingAddLocation, setLoadingAddLocation] = useState(false);
   const { country, latitude, longitude } = city;
@@ -62,7 +66,7 @@ const LocationCard = ({ city, unit, table, flyToLocation }) => {
       </p>
       <Button
         type="primary"
-        onClick={() => save(city, setLoadingAddLocation)}
+        onClick={() => saveLocation(city, setLoadingAddLocation, userId, loadTableData)}
         ghost
         disabled={tableContainsLocation(table, city)}
         loading={loadingAddLocation}
@@ -80,6 +84,7 @@ const LocationCard = ({ city, unit, table, flyToLocation }) => {
 };
 
 LocationCard.propTypes = {
+  userId: PropTypes.number.isRequired,
   city: PropTypes.object.isRequired,
   unit: PropTypes.string.isRequired,
   table: PropTypes.array.isRequired,
@@ -87,12 +92,14 @@ LocationCard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  userId: state.user.id,
   unit: state.app.unit,
   table: state.table.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   flyToLocation: (location) => dispatch(flyToLocation(location)),
+  loadTableData: (location) => dispatch(loadTableData(location)),
 });
 
 export default connect(

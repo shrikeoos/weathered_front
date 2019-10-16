@@ -9,7 +9,7 @@ export default (state = initialState, { type, payload }) => {
     case LOAD_TABLE_DATA:
       return {
         ...state,
-        data: payload,
+        data: [...state.data, ...payload],
       };
     case EMPTY_TABLE_DATA:
       return {

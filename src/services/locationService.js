@@ -47,3 +47,17 @@ export const addLocation = async (location) => {
     return { data, status };
   }
 };
+
+export const addLocationToUser = async (locationId, userId) => {
+  try {
+    await getNewRefreshToken();
+    return await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/user/${userId}/location`,
+      { locationId },
+      { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }
+    );
+  } catch (error) {
+    const { data, status } = error.response;
+    return { data, status };
+  }
+};
