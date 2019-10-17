@@ -8,8 +8,11 @@ import { deleteLocationAction } from '../../redux/actions/table';
 
 const DeleteRowButton = ({ row, userId, deleteLocationAction }) => {
   const deleteLocation = useCallback(async () => {
-    await deleteLocationFromUser(row.id, userId);
-    await deleteLocationAction(row.id);
+    const confirm = window.confirm(`Do you really want to delete ${row.city}`);
+    if (confirm) {
+      await deleteLocationFromUser(row.id, userId);
+      await deleteLocationAction(row.id);
+    }
   }, [row]);
 
   return (
