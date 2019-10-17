@@ -1,33 +1,33 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Icon, Button, Input, message } from 'antd';
 import { createUser } from '../../services/userService';
 
 const { Item } = Form;
 
-const registerUser = (validateFields) => {
-  validateFields(async (error, values) => {
-    if (!error) {
-      const { data, status } = await createUser(values);
-      if (status === 201) {
-        message.success(data);
-      } else {
-        message.error(data);
-      }
-    }
-  });
-};
-
 const RegisterForm = ({ form }) => {
   const { validateFields, getFieldDecorator, getFieldValue } = form;
 
-  const comparePassword = (rule, value, callback) => {
+  const registerUser = useCallback(() => {
+    validateFields(async (error, values) => {
+      if (!error) {
+        const { data, status } = await createUser(values);
+        if (status === 201) {
+          message.success(data);
+        } else {
+          message.error(data);
+        }
+      }
+    });
+  }, []);
+
+  const comparePassword = useCallback((rule, value, callback) => {
     if (value && value !== getFieldValue('password')) {
       callback('Passwords do not match');
     } else {
       callback();
     }
-  };
+  }, []);
 
   return (
     <Form

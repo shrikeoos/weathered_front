@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -9,34 +9,35 @@ import { loginUser } from '../../services/userService';
 
 const { Item } = Form;
 
-const logUserIn = (validateFields, loginUserAction, loadTableData, history, setIsLoading) => {
-  validateFields(async (error, values) => {
-    if (!error) {
-      setIsLoading(true);
-      const { data, status } = await loginUser(values);
-      if (status === 200) {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-        await loginUserAction({ id: data.id, email: data.email, username: data.username });
-        await loadTableData(data.locations);
-        setIsLoading(false);
-        history.push('/');
-      } else {
-        message.error(data);
-        setIsLoading(false);
-      }
-    }
-  });
-};
-
 const LoginForm = ({ form, loginUserAction, loadTableData, history }) => {
   const { validateFields, getFieldDecorator } = form;
   const [isLoading, setIsLoading] = useState(false);
+
+  const logUserIn = useCallback(() => {
+    validateFields(async (error, values) => {
+      if (!error) {
+        setIsLoading(true);
+        const { data, status } = await loginUser(values);
+        if (status === 200) {
+          localStorage.setItem('accessToken', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          await loginUserAction({ id: data.id, email: data.email, username: data.username });
+          await loadTableData(data.locations);
+          setIsLoading(false);
+          history.push('/');
+        } else {
+          message.error(data);
+          setIsLoading(false);
+        }
+      }
+    });
+  }, []);
+
   return (
     <Form
       onSubmit={(event) => {
         event.preventDefault();
-        logUserIn(validateFields, loginUserAction, loadTableData, history, setIsLoading);
+        logUserIn();
       }}
     >
       <Item>

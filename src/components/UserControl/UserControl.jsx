@@ -24,7 +24,7 @@ const getMenu = () => (
 const UserControl = ({ username }) => {
   return (
     <div className="userControl">
-      <Dropdown overlay={getMenu(logoutUser)}>
+      <Dropdown overlay={getMenu()}>
         <a href="#">
           <Avatar style={{ backgroundColor: 'orange' }} size="large">
             {getReducedUsername(username)}

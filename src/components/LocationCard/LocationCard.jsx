@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, Spin, message } from 'antd';
@@ -15,27 +15,30 @@ import {
 import { flyToLocation } from '../../redux/actions/location';
 import { loadTableData } from '../../redux/actions/table';
 
-const saveLocation = async (location, setLoadingAddLocation, userId, loadTableData) => {
-  try {
-    setLoadingAddLocation(true);
-    await addLocation(location);
-    await addLocationToUser(location.id, userId);
-    await loadTableData([location]);
-    message.success('location added');
-  } catch (error) {
-    message.error('fail');
-  } finally {
-    setLoadingAddLocation(false);
-  }
-};
-
-const tableContainsLocation = (table, city) => table.some((location) => location.id === city.id);
-
 const LocationCard = ({ city, unit, table, flyToLocation, userId, loadTableData }) => {
   const [loading, setLoading] = useState(true);
   const [loadingAddLocation, setLoadingAddLocation] = useState(false);
   const { country, latitude, longitude } = city;
   const [data, setData] = useState({ main: { temp: 0 }, weather: [{ description: '' }] });
+
+  const saveLocation = useCallback(async () => {
+    try {
+      setLoadingAddLocation(true);
+      await addLocation(city);
+      await addLocationToUser(city.id, userId);
+      await loadTableData([city]);
+      message.success('location added');
+    } catch (error) {
+      message.error('fail');
+    } finally {
+      setLoadingAddLocation(false);
+    }
+  }, [city, userId]);
+
+  const tableContainsLocation = useCallback(
+    () => table.some((location) => location.id === city.id),
+    [table, city]
+  );
 
   useEffect(() => {
     const getWeatherByCoordinatesWrapper = async () => {
@@ -66,9 +69,9 @@ const LocationCard = ({ city, unit, table, flyToLocation, userId, loadTableData 
       </p>
       <Button
         type="primary"
-        onClick={() => saveLocation(city, setLoadingAddLocation, userId, loadTableData)}
+        onClick={() => saveLocation()}
         ghost
-        disabled={tableContainsLocation(table, city)}
+        disabled={tableContainsLocation()}
         loading={loadingAddLocation}
       >
         Save

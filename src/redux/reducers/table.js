@@ -1,4 +1,4 @@
-import { LOAD_TABLE_DATA, EMPTY_TABLE_DATA } from '../actionTypes';
+import { LOAD_TABLE_DATA, EMPTY_TABLE_DATA, DELETE_LOCATION } from '../actionTypes';
 
 const initialState = {
   data: [],
@@ -16,6 +16,8 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         ...payload,
       };
+    case DELETE_LOCATION:
+      return { ...state, data: state.data.filter((location) => location.id !== payload) };
     default:
       return state;
   }
