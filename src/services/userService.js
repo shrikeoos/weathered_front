@@ -4,6 +4,7 @@ import { logoutUserAction } from '../redux/actions/user';
 import { history } from '../App';
 import { getNewRefreshToken } from './tokenService';
 import { emptyTableData } from '../redux/actions/table';
+import { resetLocation } from '../redux/actions/location';
 
 export const createUser = async (user) => {
   try {
@@ -27,6 +28,7 @@ export const logoutUser = () => {
   history.push('/landing');
   store.dispatch(logoutUserAction());
   store.dispatch(emptyTableData());
+  store.dispatch(resetLocation());
   localStorage.clear();
 };
 
