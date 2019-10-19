@@ -31,5 +31,4 @@ export const flyToLocation = (location) => ({
 
 export const resetLocation = () => ({
   type: RESET_LOCATION,
-  payload: [],
 });
