@@ -1,6 +1,6 @@
 # weathered_front
 
-This is the frontend of a weather forecast web application. The backend can be found [here](https://github.com/romain-ngo/weathered_back).
+This is the frontend of a weather web application. The backend can be found [here](https://github.com/romain-ngo/weathered_back).
 
 - [weathered_front](#weatheredfront)
   - [Folder architecture](#folder-architecture)
@@ -21,7 +21,7 @@ This is the frontend of a weather forecast web application. The backend can be f
   - components: contains all the react component
   - pages: contains the pages called by react-router
   - redux: contains the redux store, the reducers, the action creators and the action types
-  - services: contains the functions called by the action creators
+  - services: contains functions interacting with outside 
   - utils: contains helper function
   - App.jsx: root component
   - index.js: react entry point
