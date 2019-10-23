@@ -25,7 +25,7 @@ const City = ({ location }) => {
   }, []);
 
   return loading ? (
-    <div className="city__spinner">
+    <div className="citySpinner">
       <Spin />
     </div>
   ) : (

@@ -31,7 +31,7 @@ const FormSearch = ({ cities, getCityByNameAction }) => {
           />
         </Item>
         {loading ? (
-          <div className="spinner__container">
+          <div className="spinnerContainer">
             <Spin />
           </div>
         ) : (

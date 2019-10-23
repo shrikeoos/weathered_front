@@ -12,10 +12,10 @@ import './CityCard.css';
 const CityCard = ({ city, location, unit }) => {
   return (
     <>
-      <div className="cityCard__main">
+      <div className="cityCard">
         <h1>{`${city.sys.country}, ${capitalize(getCityName(location.pathname))}`}</h1>
-        <div className="cityCard__temp__group">
-          <h1 className="cityCard__temp">{`${getRightTemperature(
+        <div className="cityCardTempGroup">
+          <h1 className="cityCardTemp">{`${getRightTemperature(
             unit,
             city.main.temp
           )} °${unit.toUpperCase()}`}</h1>

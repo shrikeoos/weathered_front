@@ -22,7 +22,7 @@ const Navbar = ({ unit, setCelsius, setFahrenheit }) => {
       <Item key="1" style={{ float: 'left' }}>
         <Link to="/">Home</Link>
       </Item>
-      <div className="navbar__user__control">
+      <div className="navbarUserControl">
         <Switch
           checkedChildren="°C"
           unCheckedChildren="°F"

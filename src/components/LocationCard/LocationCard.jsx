@@ -51,7 +51,7 @@ const LocationCard = ({ city, unit, table, flyToLocation, userId, loadTableData 
   const { main, weather } = data;
 
   return loading ? (
-    <div className="location__card__spinner">
+    <div className="locationCardSpinner">
       <Spin />
     </div>
   ) : (

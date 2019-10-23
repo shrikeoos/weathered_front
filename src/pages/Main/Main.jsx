@@ -11,12 +11,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Button
-        type="primary"
-        size="large"
-        onClick={() => setShowModal(true)}
-        className="main__button"
-      >
+      <Button type="primary" size="large" onClick={() => setShowModal(true)} className="mainButton">
         Add location
       </Button>
       <Modal

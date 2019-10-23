@@ -4,7 +4,7 @@
   width: 20%;
 }
 
-.spinner__container {
+.spinnerContainer {
   display: flex;
   align-items: center;
   justify-content: center;

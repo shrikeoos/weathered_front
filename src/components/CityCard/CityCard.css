@@ -1,15 +1,15 @@
-.cityCard__main {
+.cityCard {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.cityCard__temp__group {
+.cityCardTempGroup {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.cityCard__temp {
+.cityCardTemp {
   margin-left: 12px;
 }
