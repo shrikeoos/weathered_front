@@ -12,6 +12,9 @@ This is the frontend of a weather web application. The backend can be found [her
   - [Technology, framework and API](#technology-framework-and-api)
     - [Built with](#built-with)
     - [External API](#external-api)
+  - [Images](#images)
+    - [Home page](#home-page)
+    - [City page](#city-page)
 
 ## Folder architecture
 
@@ -86,3 +89,13 @@ The application make use of external APIs in order to get data related to cities
 - [OpenWeatherMap](https://openweathermap.org/api) for getting information related to the weather of a city.
 - [GeoDB cities](http://geodb-cities-api.wirefreethought.com/) for searching cities coordinates (This one does not require an API key).
 - [Unsplash](https://unsplash.com/developers) for the splash photo of each city.
+
+## Images
+
+### Home page
+
+![home page](img/home_page.png)
+
+### City page
+
+![city page](img/city_page.png)
